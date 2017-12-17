@@ -1,0 +1,32 @@
+[package]
+name = "spinners"
+version = "0.0.1"
+authors = ["François-Guillaume RIBREAU <github@fgribreau.com>"]
+homepage = "https://github.com/FGRibreau/spinners"
+repository = "https://github.com/FGRibreau/spinners"
+readme = "README.md"
+documentation = "https://docs.rs/spinners"
+description = "Elegant terminal spinner"
+keywords = ["spinner", "spin", "loader", "term", "terminal"]
+categories = ["command-line-interface"]
+license = "MIT"
+
+
+[dependencies]
+spinner = "0.4.0"
+lazy_static = "1.0"
+strum = "0.8.0"
+strum_macros = "0.8.0"
+
+[dev-dependencies]
+ansi_term = "0.9"
+term = "0.4.6"
+ansi-escapes = "0.1.0"
+
+
+[package.metadata.release]
+# cargo install cargo-release
+# cargo release --dry-run
+upload-doc = true
+pre-release-commit-message = "Release {{version}} 🎉🎉"
+pre-release-replacements = [ {file="README.md", search="Current release: [a-z0-9\\.-]+", replace="Current release: {{version}}"} , {file ="Cargo.toml", search="branch=\"[a-z0-9\\.-]+\"", replace="branch=\"{{version}}\""} ]
