@@ -1,4 +1,3 @@
-
 #[derive(Debug, Clone, EnumString, EnumIter)]
 pub enum SpinnerNames {
     Dots,
@@ -67,4 +66,8 @@ pub enum SpinnerNames {
     Dqpb,
     Weather,
     Christmas,
+    Grenade,
+    Point,
+    Layer,
+    BetaWave,
 }
