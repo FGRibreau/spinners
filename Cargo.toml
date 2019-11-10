@@ -28,5 +28,5 @@ strum_macros = "0.8.0"
 
 [dev-dependencies]
 ansi_term = "0.9"
-term = "0.4.6"
+term = "0.6.1"
 ansi-escapes = "0.1.0"
