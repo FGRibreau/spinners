@@ -1,6 +1,6 @@
 [package]
 name = "spinners"
-version = "1.0.1-alpha.0"
+version = "1.1.0"
 authors = ["François-Guillaume RIBREAU <github@fgribreau.com>"]
 homepage = "https://github.com/FGRibreau/spinners"
 repository = "https://github.com/FGRibreau/spinners"
@@ -10,6 +10,14 @@ description = "🛎 60+ Elegant terminal spinners for Rust"
 keywords = ["spinner", "spin", "loader", "term", "terminal"]
 categories = ["command-line-interface"]
 license = "MIT"
+
+
+[package.metadata.release]
+# cargo install cargo-release
+# cargo release --dry-run
+upload-doc = true
+pre-release-commit-message = "Release {{version}} 🎉🎉"
+pre-release-replacements = [ {file="README.md", search="Current release: [a-z0-9\\.-]+", replace="Current release: {{version}}"} , {file ="Cargo.toml", search="branch=\"[a-z0-9\\.-]+\"", replace="branch=\"{{version}}\""} ]
 
 
 [dependencies]
@@ -22,11 +30,3 @@ strum_macros = "0.8.0"
 ansi_term = "0.9"
 term = "0.4.6"
 ansi-escapes = "0.1.0"
-
-
-[package.metadata.release]
-# cargo install cargo-release
-# cargo release --dry-run
-upload-doc = true
-pre-release-commit-message = "Release {{version}} 🎉🎉"
-pre-release-replacements = [ {file="README.md", search="Current release: [a-z0-9\\.-]+", replace="Current release: {{version}}"} , {file ="Cargo.toml", search="branch=\"[a-z0-9\\.-]+\"", replace="branch=\"{{version}}\""} ]
