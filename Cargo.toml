@@ -23,7 +23,7 @@ pre-release-replacements = [ {file="README.md", search="Current release: [a-z0-9
 [dependencies]
 spinner = "0.5.0"
 lazy_static = "1.0"
-strum = "0.8.0"
+strum = "0.18.0"
 strum_macros = "0.8.0"
 
 [dev-dependencies]
