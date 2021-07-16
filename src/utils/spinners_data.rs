@@ -1,4 +1,6 @@
-use spinner_data::SpinnerData;
+#![allow(clippy::non_ascii_literal)]
+use crate::utils::spinner_data::SpinnerData;
+use lazy_static::lazy_static;
 lazy_static! {
     pub static ref SPINNERS: Vec<SpinnerData> = {
         vec![
