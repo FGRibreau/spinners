@@ -27,6 +27,7 @@ spinner = "0.5"
 lazy_static = "1.4"
 strum = "0.21"
 strum_macros = "0.21"
+maplit = "1.0"
 
 [dev-dependencies]
 ansi_term = "0.9"

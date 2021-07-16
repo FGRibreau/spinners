@@ -15,12 +15,10 @@ impl Spinner {
     /// Returns a spinner
     pub fn new(spinner: &Spinners, message: String) -> Self {
         let spinner_name = format!("{:?}", spinner);
-        let spinner_data = RawSpinners
-            .iter()
-            .find(|x| x.name == spinner_name)
-            .take()
-            .unwrap()
-            .clone();
+        let spinner_data = match RawSpinners.get(&spinner_name) {
+            Some(spinner_data) => spinner_data,
+            None => panic!("No Spinner found with the given name: {}", spinner_name),
+        };
 
         // @todo implement my own Spinner thread
         let handle = SpinnerBuilder::new(message)
