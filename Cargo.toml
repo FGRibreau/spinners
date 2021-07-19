@@ -1,6 +1,6 @@
 [package]
 name = "spinners"
-version = "1.2.1-alpha.0"
+version = "2.0.0"
 edition = "2018"
 authors = ["François-Guillaume RIBREAU <github@fgribreau.com>"]
 homepage = "https://github.com/FGRibreau/spinners"
