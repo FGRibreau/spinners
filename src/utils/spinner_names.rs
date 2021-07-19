@@ -1,5 +1,4 @@
-use strum_macros::{EnumIter, EnumString};
-#[derive(Debug, Clone, EnumIter, EnumString)]
+#[derive(Debug, Clone, EnumString, EnumIter)]
 pub enum SpinnerNames {
     Dots,
     Dots2,
@@ -13,6 +12,7 @@ pub enum SpinnerNames {
     Dots10,
     Dots11,
     Dots12,
+    Dots8Bit,
     Line,
     Line2,
     Pipe,
@@ -60,6 +60,7 @@ pub enum SpinnerNames {
     Hearts,
     Clock,
     Earth,
+    Material,
     Moon,
     Runner,
     Pong,
@@ -71,4 +72,14 @@ pub enum SpinnerNames {
     Point,
     Layer,
     BetaWave,
+    FingerDance,
+    FistBump,
+    SoccerHeader,
+    Mindblown,
+    Speaker,
+    OrangePulse,
+    BluePulse,
+    OrangeBluePulse,
+    TimeTravel,
+    Aesthetic,
 }
