@@ -1,78 +1,83 @@
-use spinner_data::SpinnerData;
+#![allow(clippy::non_ascii_literal)]
+use std::collections::HashMap;
+
+use crate::utils::spinner_data::SpinnerData;
+use lazy_static::lazy_static;
+use maplit::{self, hashmap};
+
 lazy_static! {
-    pub static ref SPINNERS: Vec<SpinnerData> = {
-        vec![
-            SpinnerData {
-                name: "Dots".into(),
+    pub static ref SPINNERS: HashMap<String, SpinnerData> = {
+        hashmap! {
+            "Dots".into() => SpinnerData {
                 frames: vec!["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"],
                 interval: 80,
             },
+            "Dots2".into() =>
             SpinnerData {
-                name: "Dots2".into(),
                 frames: vec!["⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"],
                 interval: 80,
             },
+            "Dots3".into() =>
             SpinnerData {
-                name: "Dots3".into(),
                 frames: vec!["⠋", "⠙", "⠚", "⠞", "⠖", "⠦", "⠴", "⠲", "⠳", "⠓"],
                 interval: 80,
             },
+            "Dots4".into() =>
             SpinnerData {
-                name: "Dots4".into(),
                 frames: vec![
                     "⠄", "⠆", "⠇", "⠋", "⠙", "⠸", "⠰", "⠠", "⠰", "⠸", "⠙", "⠋", "⠇", "⠆",
                 ],
                 interval: 80,
             },
+            "Dots5".into() =>
             SpinnerData {
-                name: "Dots5".into(),
                 frames: vec![
                     "⠋", "⠙", "⠚", "⠒", "⠂", "⠂", "⠒", "⠲", "⠴", "⠦", "⠖", "⠒", "⠐", "⠐", "⠒", "⠓",
                     "⠋",
                 ],
                 interval: 80,
             },
+            "Dots6".into() =>
             SpinnerData {
-                name: "Dots6".into(),
                 frames: vec![
                     "⠁", "⠉", "⠙", "⠚", "⠒", "⠂", "⠂", "⠒", "⠲", "⠴", "⠤", "⠄", "⠄", "⠤", "⠴", "⠲",
                     "⠒", "⠂", "⠂", "⠒", "⠚", "⠙", "⠉", "⠁",
                 ],
                 interval: 80,
             },
+            "Dots7".into() =>
             SpinnerData {
-                name: "Dots7".into(),
                 frames: vec![
                     "⠈", "⠉", "⠋", "⠓", "⠒", "⠐", "⠐", "⠒", "⠖", "⠦", "⠤", "⠠", "⠠", "⠤", "⠦", "⠖",
                     "⠒", "⠐", "⠐", "⠒", "⠓", "⠋", "⠉", "⠈",
                 ],
                 interval: 80,
             },
+            "Dots8".into() =>
             SpinnerData {
-                name: "Dots8".into(),
                 frames: vec![
                     "⠁", "⠁", "⠉", "⠙", "⠚", "⠒", "⠂", "⠂", "⠒", "⠲", "⠴", "⠤", "⠄", "⠄", "⠤", "⠠",
                     "⠠", "⠤", "⠦", "⠖", "⠒", "⠐", "⠐", "⠒", "⠓", "⠋", "⠉", "⠈", "⠈",
                 ],
                 interval: 80,
             },
+            "Dots9".into() =>
             SpinnerData {
-                name: "Dots9".into(),
                 frames: vec!["⢹", "⢺", "⢼", "⣸", "⣇", "⡧", "⡗", "⡏"],
                 interval: 80,
             },
+            "Dots10".into() =>
             SpinnerData {
-                name: "Dots10".into(),
                 frames: vec!["⢄", "⢂", "⢁", "⡁", "⡈", "⡐", "⡠"],
                 interval: 80,
             },
+            "Dots11".into() =>
             SpinnerData {
-                name: "Dots11".into(),
                 frames: vec!["⠁", "⠂", "⠄", "⡀", "⢀", "⠠", "⠐", "⠈"],
                 interval: 100,
             },
+            "Dots12".into() =>
             SpinnerData {
-                name: "Dots12".into(),
                 frames: vec![
                     "⢀⠀", "⡀⠀", "⠄⠀", "⢂⠀", "⡂⠀", "⠅⠀", "⢃⠀", "⡃⠀", "⠍⠀", "⢋⠀", "⡋⠀", "⠍⠁", "⢋⠁",
                     "⡋⠁", "⠍⠉", "⠋⠉", "⠋⠉", "⠉⠙", "⠉⠙", "⠉⠩", "⠈⢙", "⠈⡙", "⢈⠩", "⡀⢙", "⠄⡙", "⢂⠩",
@@ -82,216 +87,216 @@ lazy_static! {
                 ],
                 interval: 80,
             },
+            "Line".into() =>
             SpinnerData {
-                name: "Line".into(),
                 frames: vec!["-", "\\", "|", "/"],
                 interval: 130,
             },
+            "Line2".into() =>
             SpinnerData {
-                name: "Line2".into(),
                 frames: vec!["⠂", "-", "–", "—", "–", "-"],
                 interval: 100,
             },
+            "Pipe".into() =>
             SpinnerData {
-                name: "Pipe".into(),
                 frames: vec!["┤", "┘", "┴", "└", "├", "┌", "┬", "┐"],
                 interval: 100,
             },
+            "SimpleDots".into() =>
             SpinnerData {
-                name: "SimpleDots".into(),
                 frames: vec![".  ", ".. ", "...", "   "],
                 interval: 400,
             },
+            "SimpleDotsScrolling".into() =>
             SpinnerData {
-                name: "SimpleDotsScrolling".into(),
                 frames: vec![".  ", ".. ", "...", " ..", "  .", "   "],
                 interval: 200,
             },
+            "Star".into() =>
             SpinnerData {
-                name: "Star".into(),
                 frames: vec!["✶", "✸", "✹", "✺", "✹", "✷"],
                 interval: 70,
             },
+            "Star2".into() =>
             SpinnerData {
-                name: "Star2".into(),
                 frames: vec!["+", "x", "*"],
                 interval: 80,
             },
+            "Flip".into() =>
             SpinnerData {
-                name: "Flip".into(),
                 frames: vec!["_", "_", "_", "-", "`", "`", "'", "´", "-", "_", "_", "_"],
                 interval: 70,
             },
+            "Hamburger".into() =>
             SpinnerData {
-                name: "Hamburger".into(),
                 frames: vec!["☱", "☲", "☴"],
                 interval: 100,
             },
+            "GrowVertical".into() =>
             SpinnerData {
-                name: "GrowVertical".into(),
                 frames: vec!["▁", "▃", "▄", "▅", "▆", "▇", "▆", "▅", "▄", "▃"],
                 interval: 120,
             },
+            "GrowHorizontal".into() =>
             SpinnerData {
-                name: "GrowHorizontal".into(),
                 frames: vec!["▏", "▎", "▍", "▌", "▋", "▊", "▉", "▊", "▋", "▌", "▍", "▎"],
                 interval: 120,
             },
+            "Balloon".into() =>
             SpinnerData {
-                name: "Balloon".into(),
                 frames: vec![" ", ".", "o", "O", "@", "*", " "],
                 interval: 140,
             },
+            "Balloon2".into() =>
             SpinnerData {
-                name: "Balloon2".into(),
                 frames: vec![".", "o", "O", "°", "O", "o", "."],
                 interval: 120,
             },
+            "Noise".into() =>
             SpinnerData {
-                name: "Noise".into(),
                 frames: vec!["▓", "▒", "░"],
                 interval: 100,
             },
+            "Bounce".into() =>
             SpinnerData {
-                name: "Bounce".into(),
                 frames: vec!["⠁", "⠂", "⠄", "⠂"],
                 interval: 120,
             },
+            "BoxBounce".into() =>
             SpinnerData {
-                name: "BoxBounce".into(),
                 frames: vec!["▖", "▘", "▝", "▗"],
                 interval: 120,
             },
+            "BoxBounce2".into() =>
             SpinnerData {
-                name: "BoxBounce2".into(),
                 frames: vec!["▌", "▀", "▐", "▄"],
                 interval: 100,
             },
+            "Triangle".into() =>
             SpinnerData {
-                name: "Triangle".into(),
                 frames: vec!["◢", "◣", "◤", "◥"],
                 interval: 50,
             },
+            "Arc".into() =>
             SpinnerData {
-                name: "Arc".into(),
                 frames: vec!["◜", "◠", "◝", "◞", "◡", "◟"],
                 interval: 100,
             },
+            "Circle".into() =>
             SpinnerData {
-                name: "Circle".into(),
                 frames: vec!["◡", "⊙", "◠"],
                 interval: 120,
             },
+            "SquareCorners".into() =>
             SpinnerData {
-                name: "SquareCorners".into(),
                 frames: vec!["◰", "◳", "◲", "◱"],
                 interval: 180,
             },
+            "CircleQuarters".into() =>
             SpinnerData {
-                name: "CircleQuarters".into(),
                 frames: vec!["◴", "◷", "◶", "◵"],
                 interval: 120,
             },
+            "CircleHalves".into() =>
             SpinnerData {
-                name: "CircleHalves".into(),
                 frames: vec!["◐", "◓", "◑", "◒"],
                 interval: 50,
             },
+            "Squish".into() =>
             SpinnerData {
-                name: "Squish".into(),
                 frames: vec!["╫", "╪"],
                 interval: 100,
             },
+            "Toggle".into() =>
             SpinnerData {
-                name: "Toggle".into(),
                 frames: vec!["⊶", "⊷"],
                 interval: 250,
             },
+            "Toggle2".into() =>
             SpinnerData {
-                name: "Toggle2".into(),
                 frames: vec!["▫", "▪"],
                 interval: 80,
             },
+            "Toggle3".into() =>
             SpinnerData {
-                name: "Toggle3".into(),
                 frames: vec!["□", "■"],
                 interval: 120,
             },
+            "Toggle4".into() =>
             SpinnerData {
-                name: "Toggle4".into(),
                 frames: vec!["■", "□", "▪", "▫"],
                 interval: 100,
             },
+            "Toggle5".into() =>
             SpinnerData {
-                name: "Toggle5".into(),
                 frames: vec!["▮", "▯"],
                 interval: 100,
             },
+            "Toggle6".into() =>
             SpinnerData {
-                name: "Toggle6".into(),
                 frames: vec!["ဝ", "၀"],
                 interval: 300,
             },
+            "Toggle7".into() =>
             SpinnerData {
-                name: "Toggle7".into(),
                 frames: vec!["⦾", "⦿"],
                 interval: 80,
             },
+            "Toggle8".into() =>
             SpinnerData {
-                name: "Toggle8".into(),
                 frames: vec!["◍", "◌"],
                 interval: 100,
             },
+            "Toggle9".into() =>
             SpinnerData {
-                name: "Toggle9".into(),
                 frames: vec!["◉", "◎"],
                 interval: 100,
             },
+            "Toggle10".into() =>
             SpinnerData {
-                name: "Toggle10".into(),
                 frames: vec!["㊂", "㊀", "㊁"],
                 interval: 100,
             },
+            "Toggle11".into() =>
             SpinnerData {
-                name: "Toggle11".into(),
                 frames: vec!["⧇", "⧆"],
                 interval: 50,
             },
+            "Toggle12".into() =>
             SpinnerData {
-                name: "Toggle12".into(),
                 frames: vec!["☗", "☖"],
                 interval: 120,
             },
+            "Toggle13".into() =>
             SpinnerData {
-                name: "Toggle13".into(),
                 frames: vec!["=", "*", "-"],
                 interval: 80,
             },
+            "Arrow".into() =>
             SpinnerData {
-                name: "Arrow".into(),
                 frames: vec!["←", "↖", "↑", "↗", "→", "↘", "↓", "↙"],
                 interval: 100,
             },
+            "Arrow2".into() =>
             SpinnerData {
-                name: "Arrow2".into(),
                 frames: vec!["⬆️ ", "↗️ ", "➡️ ", "↘️ ", "⬇️ ", "↙️ ", "⬅️ ", "↖️ "],
                 interval: 80,
             },
+            "Arrow3".into() =>
             SpinnerData {
-                name: "Arrow3".into(),
                 frames: vec!["▹▹▹▹▹", "▸▹▹▹▹", "▹▸▹▹▹", "▹▹▸▹▹", "▹▹▹▸▹", "▹▹▹▹▸"],
                 interval: 120,
             },
+            "BouncingBar".into() =>
             SpinnerData {
-                name: "BouncingBar".into(),
                 frames: vec![
                     "[    ]", "[=   ]", "[==  ]", "[=== ]", "[ ===]", "[  ==]", "[   =]", "[    ]",
                     "[   =]", "[  ==]", "[ ===]", "[====]", "[=== ]", "[==  ]", "[=   ]",
                 ],
                 interval: 80,
             },
+            "BouncingBall".into() =>
             SpinnerData {
-                name: "BouncingBall".into(),
                 frames: vec![
                     "( ●    )",
                     "(  ●   )",
@@ -306,46 +311,46 @@ lazy_static! {
                 ],
                 interval: 80,
             },
+            "Smiley".into() =>
             SpinnerData {
-                name: "Smiley".into(),
                 frames: vec!["😄 ", "😝 "],
                 interval: 200,
             },
+            "Monkey".into() =>
             SpinnerData {
-                name: "Monkey".into(),
                 frames: vec!["🙈 ", "🙈 ", "🙉 ", "🙊 "],
                 interval: 300,
             },
+            "Hearts".into() =>
             SpinnerData {
-                name: "Hearts".into(),
                 frames: vec!["💛 ", "💙 ", "💜 ", "💚 ", "❤️ "],
                 interval: 100,
             },
+            "Clock".into() =>
             SpinnerData {
-                name: "Clock".into(),
                 frames: vec![
                     "🕛 ", "🕐 ", "🕑 ", "🕒 ", "🕓 ", "🕔 ", "🕕 ", "🕖 ", "🕗 ", "🕘 ", "🕙 ",
                     "🕚 ",
                 ],
                 interval: 100,
             },
+            "Earth".into() =>
             SpinnerData {
-                name: "Earth".into(),
                 frames: vec!["🌍 ", "🌎 ", "🌏 "],
                 interval: 180,
             },
+            "Moon".into() =>
             SpinnerData {
-                name: "Moon".into(),
                 frames: vec!["🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 "],
                 interval: 80,
             },
+            "Runner".into() =>
             SpinnerData {
-                name: "Runner".into(),
                 frames: vec!["🚶 ", "🏃 "],
                 interval: 140,
             },
+            "Pong".into() =>
             SpinnerData {
-                name: "Pong".into(),
                 frames: vec![
                     "▐⠂       ▌",
                     "▐⠈       ▌",
@@ -380,8 +385,8 @@ lazy_static! {
                 ],
                 interval: 80,
             },
+            "Shark".into() =>
             SpinnerData {
-                name: "Shark".into(),
                 frames: vec![
                     "▐|\\____________▌",
                     "▐_|\\___________▌",
@@ -412,44 +417,44 @@ lazy_static! {
                 ],
                 interval: 120,
             },
+            "Dqpb".into() =>
             SpinnerData {
-                name: "Dqpb".into(),
                 frames: vec!["d", "q", "p", "b"],
                 interval: 100,
             },
+            "Weather".into() =>
             SpinnerData {
-                name: "Weather".into(),
                 frames: vec![
                     "☀️ ", "☀️ ", "☀️ ", "🌤 ", "⛅️ ", "🌥 ", "☁️ ", "🌧 ", "🌨 ", "🌧 ", "🌨 ", "🌧 ", "🌨 ",
                     "⛈ ", "🌨 ", "🌧 ", "🌨 ", "☁️ ", "🌥 ", "⛅️ ", "🌤 ", "☀️ ", "☀️ ",
                 ],
                 interval: 100,
             },
+            "Christmas".into() =>
             SpinnerData {
-                name: "Christmas".into(),
                 frames: vec!["🌲", "🎄"],
                 interval: 400,
             },
+            "Grenade".into() =>
             SpinnerData {
-                name: "Grenade".into(),
                 frames: vec![
                     "،   ", "′   ", " ´ ", " ‾ ", "  ⸌", "  ⸊", "  |", "  ⁎", "  ⁕", " ෴ ", "  ⁓",
                     "   ", "   ", "   ",
                 ],
                 interval: 80,
             },
+            "Point".into() =>
             SpinnerData {
-                name: "Point".into(),
                 frames: vec!["∙∙∙", "●∙∙", "∙●∙", "∙∙●", "∙∙∙"],
                 interval: 125,
             },
+            "Layer".into() =>
             SpinnerData {
-                name: "Layer".into(),
                 frames: vec!["-", "=", "≡"],
                 interval: 150,
             },
+            "BetaWave".into() =>
             SpinnerData {
-                name: "BetaWave".into(),
                 frames: vec![
                     "ρββββββ",
                     "βρβββββ",
@@ -461,6 +466,6 @@ lazy_static! {
                 ],
                 interval: 80,
             },
-        ]
+        }
     };
 }
