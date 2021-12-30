@@ -31,7 +31,7 @@ fn main() {
 }
 ```
 
-- [List of available spinners](src/spinner_names.rs)
+- [List of available spinners](src/utils/spinner_names.rs)
 - [Documentation](https://docs.rs/spinners/)
 
 ## Example
