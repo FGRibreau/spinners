@@ -6,7 +6,6 @@ use std::time::Duration;
 fn main() {
     let sp = Spinner::extended(
         &Spinners::Pipe,
-        "Waiting for 3 seconds".into(),
         Box::new(|sp, status| {
             format!(
                 "{spin} -- Currently working on: \'{status}\' -- {spin}",
