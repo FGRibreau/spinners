@@ -7,7 +7,7 @@ A fork of [Spinners](https://github.com/FGRibreau/spinners) with improved perfor
 [![Docs](https://img.shields.io/badge/docs-👌-4EC329.svg?)](https://docs.rs/spinners-rs/)
 [![Downloads](https://img.shields.io/crates/d/spinners-rs.svg)](https://crates.io/crates/spinners-rs)
 
-<p align="center"><img src="https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif"></p>
+![Demo Gif](https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif)
 
 ## Install
 
