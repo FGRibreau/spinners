@@ -5,7 +5,7 @@ A fork of [Spinners](https://github.com/FGRibreau/spinners) with improved perfor
 [![Cargo version](https://img.shields.io/crates/v/spinners-rs.svg)](https://crates.io/crates/spinners-rs)
 [![License](https://img.shields.io/github/license/jamesinaxx/spinners-rs)](https://github.com/jamesinaxx/spinners-rs/blob/master/LICENSE)
 [![Docs](https://img.shields.io/badge/docs-👌-4EC329.svg?)](https://docs.rs/spinners-rs/)
-[![Crates.io](https://img.shields.io/crates/d/spinners-rs.svg)](https://crates.io/crates/spinners-rs)
+[![Downloads](https://img.shields.io/crates/d/spinners-rs.svg)](https://crates.io/crates/spinners-rs)
 
 <p align="center"><img src="https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif"></p>
 
