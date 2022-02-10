@@ -1,5 +1,7 @@
 # Spinners - 🛎 60+ Elegant terminal spinners for Rust
 
+A fork of [spinners](https://github.com/FGRibreau/spinners) with improved performance and support for all modern terminals
+
 [![Cargo version](https://img.shields.io/crates/v/spinners-rs.svg)](https://crates.io/crates/spinners-rs) [![Crates.io](https://img.shields.io/crates/l/spinners-rs.svg)](https://crates.io/crates/spinners-rs) [![docs.rs](https://img.shields.io/badge/docs.rs-👌-4EC329.svg?)](https://docs.rs/spinners-rs/) [![Crates.io](https://img.shields.io/crates/d/spinners-rs.svg)](https://crates.io/crates/spinners-rs) [![Slack](https://img.shields.io/badge/Slack-Join%20our%20tech%20community-17202A?logo=slack)](https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg)
 
 <p align="center"><img src="https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif"></p>
