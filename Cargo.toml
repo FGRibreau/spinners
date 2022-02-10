@@ -13,14 +13,6 @@ categories = ["command-line-interface"]
 license = "MIT"
 include = ["src/**/*", "README.md"]
 
-
-[package.metadata.release]
-# cargo install cargo-release
-# cargo release --dry-run
-pre-release-commit-message = "Release {{version}} 🎉🎉"
-pre-release-replacements = [ {file="README.md", search="Current release: [a-z0-9\\.-]+", replace="Current release: {{version}}"} , {file ="Cargo.toml", search="branch=\"[a-z0-9\\.-]+\"", replace="branch=\"{{version}}\""} ]
-
-
 [dependencies]
 lazy_static = "1.4"
 maplit = "1.0"
