@@ -1,6 +1,6 @@
-# Spinners - 🛎 60+ Elegant terminal spinners for Rust
+# Spinners RS - 🛎 60+ Elegant terminal spinners for Rust
 
-A fork of [spinners](https://github.com/FGRibreau/spinners) with improved performance and support for all modern terminals
+A fork of [Spinners](https://github.com/FGRibreau/spinners) with improved performance and support for all modern terminals
 
 [![Cargo version](https://img.shields.io/crates/v/spinners-rs.svg)](https://crates.io/crates/spinners-rs)
 [![License](https://img.shields.io/github/license/jamesinaxx/spinners-rs)](https://github.com/jamesinaxx/spinners-rs/blob/master/LICENSE)
@@ -16,9 +16,7 @@ See [Cargo page](https://crates.io/crates/spinners-rs)
 ## Usage
 
 ```rust
-use spinners;
-
-use spinners::{Spinner, Spinners};
+use spinners_rs::{Spinner, Spinners};
 use std::thread::sleep;
 use std::time::Duration;
 
