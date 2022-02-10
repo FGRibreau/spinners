@@ -1,12 +1,12 @@
 [package]
-name = "spinners"
-version = "2.0.1-alpha.0"
-edition = "2018"
-authors = ["François-Guillaume RIBREAU <github@fgribreau.com>"]
-homepage = "https://github.com/FGRibreau/spinners"
-repository = "https://github.com/FGRibreau/spinners"
+name = "spinners-rs"
+version = "1.0.0"
+edition = "2021"
+authors = ["jamesinaxx","François-Guillaume RIBREAU <github@fgribreau.com>"]
+homepage = "https://github.com/jamesinaxx/spinners-rs"
+repository = "https://github.com/jamesinaxx/spinners-rs"
 readme = "README.md"
-documentation = "https://docs.rs/spinners"
+documentation = "https://docs.rs/spinners-rs"
 description = "🛎 60+ Elegant terminal spinners for Rust"
 keywords = ["spinner", "spin", "loader", "term", "terminal"]
 categories = ["command-line-interface"]
@@ -22,13 +22,5 @@ pre-release-replacements = [ {file="README.md", search="Current release: [a-z0-9
 
 
 [dependencies]
-spinner = "0.5"
 lazy_static = "1.4"
-strum = "0.21"
-strum_macros = "0.21"
 maplit = "1.0"
-
-[dev-dependencies]
-ansi_term = "0.9"
-term = "0.4.6"
-ansi-escapes = "0.1.0"

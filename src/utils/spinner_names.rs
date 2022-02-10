@@ -1,6 +1,4 @@
-use strum_macros::{EnumIter, EnumString};
-#[derive(Debug, Clone, EnumIter, EnumString)]
-
+#[derive(Debug, Clone)]
 pub enum SpinnerNames {
     Dots,
     Dots2,

@@ -1,18 +1,20 @@
-use spinner::{SpinnerBuilder, SpinnerHandle};
-use std::time::Duration;
+use std::{
+    io::{self, Write},
+    sync::mpsc::{self, Sender, TryRecvError},
+    thread,
+    time::Duration,
+};
 
 pub mod utils;
 pub use crate::utils::spinner_names::SpinnerNames as Spinners;
 use crate::utils::spinners_data::SPINNERS as RawSpinners;
 
 pub struct Spinner {
-    handle: SpinnerHandle,
+    sender: Sender<()>,
 }
 
 impl Spinner {
     /// Create a new spinner along with a message
-    ///
-    /// Returns a spinner
     pub fn new(spinner: &Spinners, message: String) -> Self {
         let spinner_name = format!("{:?}", spinner);
         let spinner_data = match RawSpinners.get(&spinner_name) {
@@ -20,24 +22,32 @@ impl Spinner {
             None => panic!("No Spinner found with the given name: {}", spinner_name),
         };
 
-        // @todo implement my own Spinner thread
-        let handle = SpinnerBuilder::new(message)
-            .spinner(spinner_data.frames.clone())
-            .step(Duration::from_millis(spinner_data.interval.into()))
-            .start();
+        let (tx, rx) = mpsc::channel::<()>();
 
-        Spinner { handle }
+        thread::spawn(move || loop {
+            for frame in spinner_data.frames.iter() {
+                print!("\r{} {}", message, frame);
+                io::stdout().flush().unwrap();
+                thread::sleep(Duration::from_millis(spinner_data.interval as u64));
+                match rx.try_recv() {
+                    Ok(_) | Err(TryRecvError::Disconnected) => {
+                        println!("Terminating.");
+                        break;
+                    }
+                    Err(TryRecvError::Empty) => {}
+                }
+            }
+        });
+
+        Spinner { sender: tx }
     }
 
-    /// Update spinner's message
-    ///
-    /// Returns the String that is put in in case the sender could not send.
-    pub fn message(&self, message: String) -> Option<String> {
-        self.handle.update(message)
-    }
+    // TODO: Add update message function
 
     /// Stop the spinner
     pub fn stop(self) {
-        self.handle.close();
+        self.sender
+            .send(())
+            .expect("Could not stop spinner thread.");
     }
 }
