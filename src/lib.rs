@@ -24,15 +24,14 @@ impl Spinner {
 
         let (tx, rx) = mpsc::channel::<()>();
 
-        thread::spawn(move || loop {
+        thread::spawn(move || 'outer: loop {
             for frame in spinner_data.frames.iter() {
                 print!("\r{} {}", message, frame);
                 io::stdout().flush().unwrap();
                 thread::sleep(Duration::from_millis(spinner_data.interval as u64));
                 match rx.try_recv() {
                     Ok(_) | Err(TryRecvError::Disconnected) => {
-                        println!("Terminating.");
-                        break;
+                        break 'outer;
                     }
                     Err(TryRecvError::Empty) => {}
                 }

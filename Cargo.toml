@@ -24,3 +24,5 @@ pre-release-replacements = [ {file="README.md", search="Current release: [a-z0-9
 [dependencies]
 lazy_static = "1.4"
 maplit = "1.0"
+strum = "0.23.0"
+strum_macros = "0.23.1"

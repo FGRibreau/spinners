@@ -6,11 +6,6 @@
 
 <p align="center"><img src="https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif"></p>
 
-> ## ❤️ Shameless plug
->
-> - [**Charts, simple as a URL**. No more server-side rendering pain, 1 url = 1 chart](https://image-charts.com)
-> - [Keycloak Identity and Access Management (IAM) as a Service](https://www.cloud-iam.com/)
-
 ## Install
 
 See [Cargo page](https://crates.io/crates/spinners)
