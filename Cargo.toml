@@ -14,7 +14,7 @@ license = "MIT"
 include = ["src/**/*", "README.md"]
 
 [dependencies]
-lazy_static = "1.4"
-maplit = "1.0"
+lazy_static = "1.4.0"
+maplit = "1.0.2"
 strum = "0.23.0"
 strum_macros = "0.23.1"
