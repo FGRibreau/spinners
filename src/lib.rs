@@ -26,15 +26,16 @@ impl Spinner {
 
         thread::spawn(move || 'outer: loop {
             for frame in spinner_data.frames.iter() {
-                print!("\r{} {}", frame, message);
-                io::stdout().flush().unwrap();
-                thread::sleep(Duration::from_millis(spinner_data.interval as u64));
                 match rx.try_recv() {
                     Ok(_) | Err(TryRecvError::Disconnected) => {
                         break 'outer;
                     }
                     Err(TryRecvError::Empty) => {}
                 }
+
+                print!("\r{} {}", frame, message);
+                io::stdout().flush().unwrap();
+                thread::sleep(Duration::from_millis(spinner_data.interval as u64));
             }
         });
 
