@@ -22,11 +22,11 @@ impl Spinner {
             None => panic!("No Spinner found with the given name: {}", spinner_name),
         };
 
-        let (tx, rx) = mpsc::channel::<()>();
+        let (sender, recv) = mpsc::channel::<()>();
 
         thread::spawn(move || 'outer: loop {
             for frame in spinner_data.frames.iter() {
-                match rx.try_recv() {
+                match recv.try_recv() {
                     Ok(_) | Err(TryRecvError::Disconnected) => {
                         break 'outer;
                     }
@@ -39,7 +39,7 @@ impl Spinner {
             }
         });
 
-        Spinner { sender: tx }
+        Spinner { sender }
     }
 
     // TODO: Add update message function
