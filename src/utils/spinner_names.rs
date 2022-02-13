@@ -1,4 +1,4 @@
-use strum_macros::EnumIter;
+use strum::EnumIter;
 
 #[derive(Debug, Clone, EnumIter)]
 pub enum SpinnerNames {
