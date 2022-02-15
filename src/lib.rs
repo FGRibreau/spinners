@@ -1,5 +1,5 @@
 use std::{
-    io::{self, Write},
+    io::{stdout, Write},
     sync::mpsc::{self, Sender, TryRecvError},
     thread,
     time::Duration,
@@ -33,7 +33,7 @@ impl Spinner {
                 }
 
                 print!("\r{} {}", frame, message);
-                io::stdout().flush().unwrap();
+                stdout().flush().unwrap();
                 thread::sleep(Duration::from_millis(spinner_data.interval as u64));
             }
         });
