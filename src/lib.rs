@@ -15,6 +15,16 @@ pub struct Spinner {
 
 impl Spinner {
     /// Create a new spinner along with a message
+    ///
+    /// If you desire an empty message, create an empty string
+    ///
+    /// # Basic Usage:
+    ///
+    /// ```
+    /// use spinners_rs::{Spinner, Spinners};
+    ///
+    /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    /// ```
     pub fn new(spinner: Spinners, message: String) -> Self {
         let spinner_name = spinner.to_string();
         let spinner_data = SpinnersMap
@@ -44,16 +54,61 @@ impl Spinner {
 
     // TODO: Add update message function
 
-    /// Stop the spinner
+    /// Stops the spinner
+    ///
+    /// Stops the spinner that was created with the [`Spinner::new`] function.
+    ///
+    /// Optionally call [`stop_with_newline`] to print a newline after the spinner is stopped,
+    /// or the [`stop_with_message`] function to print a message after the spinner is stopped.
+    ///
+    /// [`Spinner::new`]: struct.Spinner.html#method.new
+    /// [`stop_with_newline`]: struct.Spinner.html#method.stop_with_newline
+    /// [`stop_with_message`]: struct.Spinner.html#method.stop_with_message
+    ///
+    /// # Basic Usage:
+    ///
+    /// ```
+    /// use spinners_rs::{Spinner, Spinners};
+    ///
+    /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    ///
+    /// sp.stop();
+    /// ```
     pub fn stop(self) {
         self.sender
             .send(())
             .expect("Could not stop spinner thread.");
     }
 
-    /// Stop the spinner and print a new line
+    /// Stops the spinner and prints a new line
+    ///
+    /// # Basic Usage:
+    ///
+    /// ```
+    /// use spinners_rs::{Spinner, Spinners};
+    ///
+    /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    ///
+    /// sp.stop_with_newline();
+    /// ```
     pub fn stop_with_newline(self) {
         self.stop();
         println!();
+    }
+
+    /// Stops the spinner and prints the provided message
+    ///
+    /// # Basic Usage:
+    ///
+    /// ```
+    /// use spinners_rs::{Spinner, Spinners};
+    ///
+    /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    ///
+    /// sp.stop_with_message("Finished loading things into memory!".into());
+    /// ```
+    pub fn stop_with_message(self, msg: String) {
+        self.stop();
+        print!("\r{}", msg);
     }
 }
