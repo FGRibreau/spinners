@@ -16,11 +16,10 @@ pub struct Spinner {
 impl Spinner {
     /// Create a new spinner along with a message
     pub fn new(spinner: Spinners, message: String) -> Self {
-        let spinner_name = format!("{:?}", spinner);
-        let spinner_data = match RawSpinners.get(&spinner_name) {
-            Some(spinner_data) => spinner_data,
-            None => panic!("No Spinner found with the given name: {}", spinner_name),
-        };
+        let spinner_name = spinner.to_string();
+        let spinner_data = RawSpinners
+            .get(&spinner_name)
+            .expect(format!("No Spinner found with the given name: {}", spinner_name).as_str());
 
         let (sender, recv) = mpsc::channel::<()>();
 
