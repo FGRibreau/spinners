@@ -16,14 +16,22 @@ pub struct Spinner {
 impl Spinner {
     /// Create a new spinner along with a message
     ///
-    /// If you desire an empty message, create an empty string
+    /// # Examples
     ///
-    /// # Basic Usage:
+    /// Basic Usage:
     ///
     /// ```
     /// use spinners_rs::{Spinner, Spinners};
     ///
     /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    /// ```
+    ///
+    /// No Message:
+    ///
+    /// ```
+    /// use spinners_rs::{Spinner, Spinners};
+    ///
+    /// let sp = Spinner::new(Spinners::Dots, String::new());
     /// ```
     pub fn new(spinner: Spinners, message: String) -> Self {
         let spinner_name = spinner.to_string();
@@ -65,7 +73,9 @@ impl Spinner {
     /// [`stop_with_newline`]: struct.Spinner.html#method.stop_with_newline
     /// [`stop_with_message`]: struct.Spinner.html#method.stop_with_message
     ///
-    /// # Basic Usage:
+    /// # Examples
+    ///
+    /// Basic Usage:
     ///
     /// ```
     /// use spinners_rs::{Spinner, Spinners};
@@ -82,7 +92,9 @@ impl Spinner {
 
     /// Stops the spinner and prints a new line
     ///
-    /// # Basic Usage:
+    /// # Examples
+    ///
+    /// Basic Usage:
     ///
     /// ```
     /// use spinners_rs::{Spinner, Spinners};
@@ -98,7 +110,9 @@ impl Spinner {
 
     /// Stops the spinner and prints the provided message
     ///
-    /// # Basic Usage:
+    /// # Examples
+    ///
+    /// Basic Usage:
     ///
     /// ```
     /// use spinners_rs::{Spinner, Spinners};
