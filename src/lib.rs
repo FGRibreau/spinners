@@ -15,7 +15,7 @@ pub struct Spinner {
 
 impl Spinner {
     /// Create a new spinner along with a message
-    pub fn new(spinner: &Spinners, message: String) -> Self {
+    pub fn new(spinner: Spinners, message: String) -> Self {
         let spinner_name = format!("{:?}", spinner);
         let spinner_data = match RawSpinners.get(&spinner_name) {
             Some(spinner_data) => spinner_data,
