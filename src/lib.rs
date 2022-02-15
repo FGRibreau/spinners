@@ -19,7 +19,7 @@ impl Spinner {
         let spinner_name = spinner.to_string();
         let spinner_data = SpinnersMap
             .get(&spinner_name)
-            .expect(format!("No Spinner found with the given name: {}", spinner_name).as_str());
+            .unwrap_or_else(|| panic!("No Spinner found with the given name: {}", spinner_name));
 
         let (sender, recv) = channel::<()>();
 
@@ -54,6 +54,6 @@ impl Spinner {
     /// Stop the spinner and print a new line
     pub fn stop_with_newline(self) {
         self.stop();
-        print!("\n");
+        println!();
     }
 }
