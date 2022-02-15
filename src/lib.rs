@@ -48,5 +48,7 @@ impl Spinner {
         self.sender
             .send(())
             .expect("Could not stop spinner thread.");
+
+        print!("\n");
     }
 }
