@@ -1,13 +1,13 @@
-# Spinners RS - 🛎 60+ Elegant terminal spinners for Rust
+# Spinners - 🛎 60+ Elegant terminal spinners for Rust
 
-A fork of [Spinners](https://github.com/FGRibreau/spinners) with improved performance and support for all modern terminals
+[![Cargo version](https://img.shields.io/crates/v/spinners.svg)](https://crates.io/crates/spinners) [![Crates.io](https://img.shields.io/crates/l/spinners.svg)](https://crates.io/crates/spinners) [![docs.rs](https://img.shields.io/badge/docs.rs-👌-4EC329.svg?)](https://docs.rs/spinners/) [![Crates.io](https://img.shields.io/crates/d/spinners.svg)](https://crates.io/crates/spinners) [![Slack](https://img.shields.io/badge/Slack-Join%20our%20tech%20community-17202A?logo=slack)](https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg)
 
-[![Cargo version](https://img.shields.io/crates/v/spinners.svg)](https://crates.io/crates/spinners)
-[![License](https://img.shields.io/github/license/FGRibreau/spinners)](https://github.com/FGRibreau/spinners/blob/master/LICENSE)
-[![Docs](https://img.shields.io/badge/docs-👌-4EC329.svg?)](https://docs.rs/spinners/)
-[![Downloads](https://img.shields.io/crates/d/spinners.svg)](https://crates.io/crates/spinners)
+<p align="center"><img src="https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif"></p>
 
-![Demo Gif](https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif)
+> ## ❤️ Shameless plug
+>
+> - [**Charts, simple as a URL**. No more server-side rendering pain, 1 url = 1 chart](https://image-charts.com)
+> - [Keycloak Identity and Access Management (IAM) as a Service](https://www.cloud-iam.com/)
 
 ## Install
 
@@ -16,12 +16,14 @@ See [Cargo page](https://crates.io/crates/spinners)
 ## Usage
 
 ```rust
-use spinners_rs::{Spinner, Spinners};
+use spinners;
+
+use spinners::{Spinner, Spinners};
 use std::thread::sleep;
 use std::time::Duration;
 
 fn main() {
-    let sp = Spinner::new(&Spinners::Dots9, "Waiting for 3 seconds".into());
+    let sp = Spinner::new(Spinners::Dots9, "Waiting for 3 seconds".into());
     sleep(Duration::from_secs(3));
     sp.stop();
 }
