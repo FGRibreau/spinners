@@ -24,6 +24,7 @@ impl Spinner {
         let (sender, recv) = channel::<()>();
 
         thread::spawn(move || 'outer: loop {
+            let mut stdout = stdout();
             for frame in spinner_data.frames.iter() {
                 match recv.try_recv() {
                     Ok(_) | Err(TryRecvError::Disconnected) => {
@@ -33,7 +34,7 @@ impl Spinner {
                 }
 
                 print!("\r{} {}", frame, message);
-                stdout().flush().unwrap();
+                stdout.flush().unwrap();
                 thread::sleep(Duration::from_millis(spinner_data.interval as u64));
             }
         });
@@ -48,7 +49,11 @@ impl Spinner {
         self.sender
             .send(())
             .expect("Could not stop spinner thread.");
+    }
 
+    /// Stop the spinner and print a new line
+    pub fn stop_with_newline(self) {
+        self.stop();
         print!("\n");
     }
 }
