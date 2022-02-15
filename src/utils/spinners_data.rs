@@ -1,8 +1,6 @@
-#![allow(clippy::non_ascii_literal)]
-use std::collections::HashMap;
-
 use lazy_static::lazy_static;
 use maplit::{self, hashmap};
+use std::collections::HashMap;
 
 #[derive(Debug, Clone)]
 pub struct SpinnerData {
