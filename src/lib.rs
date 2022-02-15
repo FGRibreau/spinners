@@ -1,6 +1,6 @@
 use std::{
     io::{stdout, Write},
-    sync::mpsc::{self, Sender, TryRecvError},
+    sync::mpsc::{channel, Sender, TryRecvError},
     thread,
     time::Duration,
 };
@@ -21,7 +21,7 @@ impl Spinner {
             .get(&spinner_name)
             .expect(format!("No Spinner found with the given name: {}", spinner_name).as_str());
 
-        let (sender, recv) = mpsc::channel::<()>();
+        let (sender, recv) = channel::<()>();
 
         thread::spawn(move || 'outer: loop {
             for frame in spinner_data.frames.iter() {
