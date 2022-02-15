@@ -11,7 +11,6 @@ pub struct SpinnerData {
 }
 
 lazy_static! {
-  /// A map of all the spinners and their data. NOTE: Not reccomended to use this directly.
     pub static ref SPINNERS: HashMap<String, SpinnerData> = {
         hashmap! {
         "Dots".into() => SpinnerData {frames: vec![

@@ -7,7 +7,7 @@ use std::{
 
 pub mod utils;
 pub use crate::utils::spinner_names::SpinnerNames as Spinners;
-pub use crate::utils::spinners_data::SPINNERS as SpinnersMap;
+use crate::utils::spinners_data::SPINNERS as SpinnersMap;
 
 pub struct Spinner {
     sender: Sender<()>,
