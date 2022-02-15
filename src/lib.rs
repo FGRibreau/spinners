@@ -5,7 +5,7 @@ use std::{
     time::Duration,
 };
 
-pub mod utils;
+mod utils;
 pub use crate::utils::spinner_names::SpinnerNames as Spinners;
 use crate::utils::spinners_data::SPINNERS as SpinnersMap;
 
