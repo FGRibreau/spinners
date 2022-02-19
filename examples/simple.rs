@@ -10,5 +10,5 @@ fn main() {
         "Waiting for 3 seconds".into(),
     );
     sleep(Duration::from_secs(3));
-    sp.stop();
+    sp.stop_with_message("Finishing waiting for 3 seconds\n".into());
 }
