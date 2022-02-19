@@ -1,24 +1,22 @@
-# Spinners - 🛎 60+ Elegant terminal spinners for Rust
+# Spinners RS - 🛎 60+ Elegant terminal spinners for Rust
 
-[![Cargo version](https://img.shields.io/crates/v/spinners.svg)](https://crates.io/crates/spinners) [![Crates.io](https://img.shields.io/crates/l/spinners.svg)](https://crates.io/crates/spinners) [![docs.rs](https://img.shields.io/badge/docs.rs-👌-4EC329.svg?)](https://docs.rs/spinners/) [![Crates.io](https://img.shields.io/crates/d/spinners.svg)](https://crates.io/crates/spinners) [![Slack](https://img.shields.io/badge/Slack-Join%20our%20tech%20community-17202A?logo=slack)](https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg)
+A fork of [Spinners](https://github.com/FGRibreau/spinners) with improved performance and support for all modern terminals
 
-<p align="center"><img src="https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif"></p>
+[![Cargo version](https://img.shields.io/crates/v/spinners-rs.svg)](https://crates.io/crates/spinners-rs)
+[![License](https://img.shields.io/github/license/jamesinaxx/spinners-rs)](https://github.com/jamesinaxx/spinners-rs/blob/master/LICENSE)
+[![Docs](https://img.shields.io/badge/docs-👌-4EC329.svg?)](https://docs.rs/spinners-rs/)
+[![Downloads](https://img.shields.io/crates/d/spinners-rs.svg)](https://crates.io/crates/spinners-rs)
 
-> ## ❤️ Shameless plug
->
-> - [**Charts, simple as a URL**. No more server-side rendering pain, 1 url = 1 chart](https://image-charts.com)
-> - [Keycloak Identity and Access Management (IAM) as a Service](https://www.cloud-iam.com/)
+![Demo Gif](https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif)
 
 ## Install
 
-See [Cargo page](https://crates.io/crates/spinners)
+See [Cargo page](https://crates.io/crates/spinners-rs)
 
 ## Usage
 
 ```rust
-use spinners;
-
-use spinners::{Spinner, Spinners};
+use spinners_rs::{Spinner, Spinners};
 use std::thread::sleep;
 use std::time::Duration;
 
@@ -30,7 +28,7 @@ fn main() {
 ```
 
 - [List of available spinners](src/utils/spinner_names.rs)
-- [Documentation](https://docs.rs/spinners/)
+- [Documentation](https://docs.rs/spinners-rs/)
 
 ## Example
 
@@ -44,4 +42,4 @@ cargo run --example simple
 
 ## License
 
-MIT © [François-Guillaume Ribreau](https://fgribreau.com)
+MIT © James Cordor
