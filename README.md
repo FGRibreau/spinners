@@ -42,4 +42,4 @@ cargo run --example simple
 
 ## License
 
-MIT © James Cordor
+MIT © [François-Guillaume Ribreau](https://fgribreau.com), James Cordor
