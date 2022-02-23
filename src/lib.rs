@@ -21,7 +21,7 @@ impl Spinner {
     /// Basic Usage:
     ///
     /// ```
-    /// use spinners_rs::{Spinner, Spinners};
+    /// use spinners::{Spinner, Spinners};
     ///
     /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     /// ```
@@ -29,7 +29,7 @@ impl Spinner {
     /// No Message:
     ///
     /// ```
-    /// use spinners_rs::{Spinner, Spinners};
+    /// use spinners::{Spinner, Spinners};
     ///
     /// let sp = Spinner::new(Spinners::Dots, String::new());
     /// ```
@@ -78,7 +78,7 @@ impl Spinner {
     /// Basic Usage:
     ///
     /// ```
-    /// use spinners_rs::{Spinner, Spinners};
+    /// use spinners::{Spinner, Spinners};
     ///
     /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     ///
@@ -97,7 +97,7 @@ impl Spinner {
     /// Basic Usage:
     ///
     /// ```
-    /// use spinners_rs::{Spinner, Spinners};
+    /// use spinners::{Spinner, Spinners};
     ///
     /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     ///
@@ -115,7 +115,7 @@ impl Spinner {
     /// Basic Usage:
     ///
     /// ```
-    /// use spinners_rs::{Spinner, Spinners};
+    /// use spinners::{Spinner, Spinners};
     ///
     /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     ///
