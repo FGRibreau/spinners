@@ -1,10 +1,10 @@
 [package]
 name = "spinners"
-version = "2.0.1-alpha.0"
-edition = "2018"
-authors = ["François-Guillaume RIBREAU <github@fgribreau.com>"]
-homepage = "https://github.com/FGRibreau/spinners"
-repository = "https://github.com/FGRibreau/spinners"
+version = "3.0.0"
+edition = "2021"
+authors = ["jewlexx","François-Guillaume RIBREAU <github@fgribreau.com>"]
+homepage = "https://github.com/fgribreau/spinners"
+repository = "https://github.com/fgribreau/spinners"
 readme = "README.md"
 documentation = "https://docs.rs/spinners"
 description = "🛎 60+ Elegant terminal spinners for Rust"
@@ -13,22 +13,7 @@ categories = ["command-line-interface"]
 license = "MIT"
 include = ["src/**/*", "README.md"]
 
-
-[package.metadata.release]
-# cargo install cargo-release
-# cargo release --dry-run
-pre-release-commit-message = "Release {{version}} 🎉🎉"
-pre-release-replacements = [ {file="README.md", search="Current release: [a-z0-9\\.-]+", replace="Current release: {{version}}"} , {file ="Cargo.toml", search="branch=\"[a-z0-9\\.-]+\"", replace="branch=\"{{version}}\""} ]
-
-
 [dependencies]
-spinner = "0.5"
-lazy_static = "1.4"
-strum = "0.21"
-strum_macros = "0.21"
-maplit = "1.0"
-
-[dev-dependencies]
-ansi_term = "0.9"
-term = "0.4.6"
-ansi-escapes = "0.1.0"
+lazy_static = { version = "1.4.0" }
+maplit = { version = "1.0.2" }
+strum = { version = "0.23.0", features = ["derive"] }

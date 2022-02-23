@@ -1,15 +1,17 @@
-#![allow(clippy::non_ascii_literal)]
+use lazy_static::lazy_static;
+use maplit::{self, hashmap};
 use std::collections::HashMap;
 
-use crate::utils::spinner_data::SpinnerData;
-use lazy_static::lazy_static;
-
-use maplit::{self, hashmap};
+#[derive(Debug, Clone)]
+pub struct SpinnerData {
+    pub frames: Vec<&'static str>,
+    pub interval: u16,
+}
 
 lazy_static! {
     pub static ref SPINNERS: HashMap<String, SpinnerData> = {
         hashmap! {
-              "Dots".into() => SpinnerData {frames: vec![
+        "Dots".into() => SpinnerData {frames: vec![
           "⠋",
           "⠙",
           "⠹",
