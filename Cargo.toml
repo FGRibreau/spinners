@@ -1,8 +1,8 @@
 [package]
 name = "spinners"
-version = "3.0.0"
+version = "3.0.1"
 edition = "2021"
-authors = ["jewlexx","François-Guillaume RIBREAU <github@fgribreau.com>"]
+authors = ["François-Guillaume RIBREAU <github@fgribreau.com>", "jewlexx"]
 homepage = "https://github.com/fgribreau/spinners"
 repository = "https://github.com/fgribreau/spinners"
 readme = "README.md"
