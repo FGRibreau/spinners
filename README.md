@@ -1,17 +1,15 @@
 # Spinners RS - 🛎 60+ Elegant terminal spinners for Rust
 
-A fork of [Spinners](https://github.com/FGRibreau/spinners) with improved performance and support for all modern terminals
-
-[![Cargo version](https://img.shields.io/crates/v/spinners-rs.svg)](https://crates.io/crates/spinners-rs)
-[![License](https://img.shields.io/github/license/jamesinaxx/spinners-rs)](https://github.com/jamesinaxx/spinners-rs/blob/master/LICENSE)
-[![Docs](https://img.shields.io/badge/docs-👌-4EC329.svg?)](https://docs.rs/spinners-rs/)
-[![Downloads](https://img.shields.io/crates/d/spinners-rs.svg)](https://crates.io/crates/spinners-rs)
+[![Cargo version](https://img.shields.io/crates/v/spinners.svg)](https://crates.io/crates/spinners)
+[![License](https://img.shields.io/github/license/fgribreau/spinners)](https://github.com/fgribreau/spinners/blob/master/LICENSE)
+[![Docs](https://img.shields.io/badge/docs-👌-4EC329.svg?)](https://docs.rs/spinners/)
+[![Downloads](https://img.shields.io/crates/d/spinners.svg)](https://crates.io/crates/spinners)
 
 ![Demo Gif](https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif)
 
 ## Install
 
-See [Cargo page](https://crates.io/crates/spinners-rs)
+See [Cargo page](https://crates.io/crates/spinners)
 
 ## Usage
 
@@ -28,7 +26,7 @@ fn main() {
 ```
 
 - [List of available spinners](src/utils/spinner_names.rs)
-- [Documentation](https://docs.rs/spinners-rs/)
+- [Documentation](https://docs.rs/spinners/)
 
 ## Example
 
