@@ -1,4 +1,4 @@
-use spinners_rs::{Spinner, Spinners};
+use spinners::{Spinner, Spinners};
 use std::{env, str::FromStr, thread::sleep, time::Duration};
 
 fn main() {

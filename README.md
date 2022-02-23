@@ -8,6 +8,7 @@
 >
 > - [**Charts, simple as a URL**. No more server-side rendering pain, 1 url = 1 chart](https://image-charts.com)
 > - [Keycloak Identity and Access Management (IAM) as a Service](https://www.cloud-iam.com/)
+> - [Automate your RoamResearch second brain](https://www.roam-bot.com)
 
 ## Install
 

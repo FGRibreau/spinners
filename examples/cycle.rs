@@ -1,4 +1,4 @@
-use spinners_rs::{Spinner, Spinners};
+use spinners::{Spinner, Spinners};
 use std::{thread::sleep, time::Duration};
 use strum::IntoEnumIterator;
 
