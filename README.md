@@ -1,4 +1,4 @@
-# Spinners RS - 🛎 60+ Elegant terminal spinners for Rust
+# Spinners - 🛎 60+ Elegant terminal spinners for Rust
 
 [![Cargo version](https://img.shields.io/crates/v/spinners.svg)](https://crates.io/crates/spinners) [![Crates.io](https://img.shields.io/crates/l/spinners.svg)](https://crates.io/crates/spinners) [![docs.rs](https://img.shields.io/badge/docs.rs-👌-4EC329.svg?)](https://docs.rs/spinners/) [![Crates.io](https://img.shields.io/crates/d/spinners.svg)](https://crates.io/crates/spinners) [![Slack](https://img.shields.io/badge/Slack-Join%20our%20tech%20community-17202A?logo=slack)](https://join.slack.com/t/fgribreau/shared_invite/zt-edpjwt2t-Zh39mDUMNQ0QOr9qOj~jrg)
 
@@ -16,7 +16,7 @@ See [Cargo page](https://crates.io/crates/spinners)
 ## Usage
 
 ```rust
-use spinners_rs::{Spinner, Spinners};
+use spinners::{Spinner, Spinners};
 use std::thread::sleep;
 use std::time::Duration;
 
