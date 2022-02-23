@@ -1,12 +1,12 @@
 [package]
 name = "spinners-rs"
-version = "1.2.3"
+version = "3.0.0"
 edition = "2021"
 authors = ["jewlexx","François-Guillaume RIBREAU <github@fgribreau.com>"]
-homepage = "https://github.com/jewlexx/spinners-rs"
-repository = "https://github.com/jewlexx/spinners-rs"
+homepage = "https://github.com/fgribreau/spinners"
+repository = "https://github.com/fgribreau/spinners"
 readme = "README.md"
-documentation = "https://docs.rs/spinners-rs"
+documentation = "https://docs.rs/spinners"
 description = "🛎 60+ Elegant terminal spinners for Rust"
 keywords = ["spinner", "spin", "loader", "term", "terminal"]
 categories = ["command-line-interface"]
