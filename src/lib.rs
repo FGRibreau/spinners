@@ -144,6 +144,7 @@ impl Spinner {
     /// ```
     pub fn stop_with_symbol(self, symbol: &str) {
         self.stop_inner(Instant::now(), Some(symbol.to_owned()));
+        println!();
     }
 
     /// Stops the spinner and prints a new line
