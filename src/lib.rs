@@ -4,7 +4,6 @@ use std::{
     thread,
     time::Duration,
 };
-use std::thread::JoinHandle;
 use std::time::Instant;
 
 pub use crate::utils::spinner_names::SpinnerNames as Spinners;
