@@ -16,4 +16,4 @@ include = ["src/**/*", "README.md"]
 [dependencies]
 lazy_static = { version = "1.4.0" }
 maplit = { version = "1.0.2" }
-strum = { version = "0.23.0", features = ["derive"] }
+strum = { version = "0.24.0", features = ["derive"] }

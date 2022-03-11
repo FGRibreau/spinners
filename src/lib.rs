@@ -13,6 +13,12 @@ pub struct Spinner {
     sender: Sender<()>,
 }
 
+impl Drop for Spinner {
+    fn drop(&mut self) {
+        self.sender.send(()).unwrap();
+    }
+}
+
 impl Spinner {
     /// Create a new spinner along with a message
     ///
