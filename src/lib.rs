@@ -13,13 +13,12 @@ use crate::utils::spinners_data::SPINNERS as SpinnersMap;
 mod utils;
 
 pub struct Spinner {
-    sender: Sender<(Instant, Option<String>)>,
-    join: JoinHandle<()>,
+    sender: Sender<(Instant, Option<String>)>
 }
 
 impl Drop for Spinner {
     fn drop(&mut self) {
-        self.sender.send(()).unwrap();
+        self.sender.send((Instant::now(),  None)).unwrap();
     }
 }
 
@@ -60,7 +59,7 @@ impl Spinner {
 
         let (sender, recv) = channel::<(Instant, Option<String>)>();
 
-        let join = thread::spawn(move || 'outer: loop {
+        thread::spawn(move || 'outer: loop {
             let mut stdout = stdout();
             for frame in spinner_data.frames.iter() {
                 let (do_stop, stop_time, stop_symbol) = match recv.try_recv() {
@@ -92,7 +91,7 @@ impl Spinner {
             }
         });
 
-        Self {sender, join}
+        Self {sender}
     }
 
     // TODO: Add update message function
@@ -193,7 +192,6 @@ impl Spinner {
         self.sender
             .send((stop_time, stop_symbol))
             .expect("Could not stop spinner thread.");
-        self.join.join().unwrap();
     }
 }
 
