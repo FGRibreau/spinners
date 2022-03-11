@@ -4,13 +4,17 @@ use std::{
     thread,
     time::Duration,
 };
+use std::thread::JoinHandle;
+use std::time::Instant;
 
-mod utils;
 pub use crate::utils::spinner_names::SpinnerNames as Spinners;
 use crate::utils::spinners_data::SPINNERS as SpinnersMap;
 
+mod utils;
+
 pub struct Spinner {
-    sender: Sender<()>,
+    sender: Sender<(Instant, Option<String>)>,
+    join: JoinHandle<()>,
 }
 
 impl Drop for Spinner {
@@ -40,30 +44,55 @@ impl Spinner {
     /// let sp = Spinner::new(Spinners::Dots, String::new());
     /// ```
     pub fn new(spinner: Spinners, message: String) -> Self {
+        Self::new_inner(spinner, message, None)
+    }
+
+    /// Create a new spinner that logs the time since it was created
+    pub fn with_timer(spinner: Spinners, message: String) -> Self {
+        Self::new_inner(spinner, message, Some(Instant::now()))
+    }
+
+    fn new_inner(spinner: Spinners, message: String, start_time: Option<Instant>) -> Self {
         let spinner_name = spinner.to_string();
         let spinner_data = SpinnersMap
             .get(&spinner_name)
             .unwrap_or_else(|| panic!("No Spinner found with the given name: {}", spinner_name));
 
-        let (sender, recv) = channel::<()>();
+        let (sender, recv) = channel::<(Instant, Option<String>)>();
 
-        thread::spawn(move || 'outer: loop {
+        let join = thread::spawn(move || 'outer: loop {
             let mut stdout = stdout();
             for frame in spinner_data.frames.iter() {
-                match recv.try_recv() {
-                    Ok(_) | Err(TryRecvError::Disconnected) => {
-                        break 'outer;
+                let (do_stop, stop_time, stop_symbol) = match recv.try_recv() {
+                    Ok((stop_time, stop_symbol)) => (true, Some(stop_time), stop_symbol),
+                    Err(TryRecvError::Disconnected) => (true, None, None),
+                    Err(TryRecvError::Empty) => (false, None, None),
+                };
+
+                let frame = stop_symbol.unwrap_or(frame.to_string());
+                match start_time {
+                    None => {
+                        print!("\r{} {}", frame, message);
                     }
-                    Err(TryRecvError::Empty) => {}
+                    Some(start_time) => {
+                        let now = stop_time.unwrap_or(Instant::now());
+                        let duration = now.duration_since(start_time).as_secs_f64();
+                        print!("\r{}{:>10.3} s\t{}", frame, duration, message);
+                    }
                 }
 
-                print!("\r{} {}", frame, message);
+
                 stdout.flush().unwrap();
+
+                if do_stop {
+                    break 'outer;
+                }
+
                 thread::sleep(Duration::from_millis(spinner_data.interval as u64));
             }
         });
 
-        Spinner { sender }
+        Self {sender, join}
     }
 
     // TODO: Add update message function
@@ -91,9 +120,37 @@ impl Spinner {
     /// sp.stop();
     /// ```
     pub fn stop(self) {
-        self.sender
-            .send(())
-            .expect("Could not stop spinner thread.");
+        self.stop_inner(Instant::now(),  None);
+    }
+
+    /// Stop with a symbol that replaces the spinner
+    ///
+    /// The symbol is a String rather than a Char to allow for more flexibility, such as using ANSI color codes.
+    ///
+    /// # Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```
+    /// use spinners::{Spinner, Spinners};
+    ///
+    /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    ///
+    /// sp.stop_with_symbol("🗸");
+    /// ```
+    ///
+    /// ANSI colors (green checkmark):
+    ///
+    /// ```
+    /// use spinners::{Spinner, Spinners};
+    ///
+    /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    ///
+    /// sp.stop_with_symbol("\x1b[32m🗸\x1b[0m");
+    /// ```
+    pub fn stop_with_symbol(self, symbol: &str) {
+        self.stop_inner(Instant::now(), Some(symbol.to_owned()));
+        println!();
     }
 
     /// Stops the spinner and prints a new line
@@ -131,4 +188,12 @@ impl Spinner {
         self.stop();
         print!("\r{}", msg);
     }
+
+    fn stop_inner(self, stop_time: Instant, stop_symbol: Option<String>) {
+        self.sender
+            .send((stop_time, stop_symbol))
+            .expect("Could not stop spinner thread.");
+        self.join.join().unwrap();
+    }
 }
+
