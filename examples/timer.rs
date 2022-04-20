@@ -5,7 +5,7 @@ fn main() {
     let mut args = env::args();
     let spinner_name = args.nth(1).unwrap_or_else(|| "Dots9".to_string());
 
-    let sp = Spinner::with_timer(
+    let mut sp = Spinner::with_timer(
         Spinners::from_str(&spinner_name).unwrap(),
         "Waiting for 3 seconds".into(),
     );
