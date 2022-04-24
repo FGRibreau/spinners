@@ -100,8 +100,6 @@ impl Spinner {
         }
     }
 
-    // TODO: Add update message function
-
     /// Stops the spinner
     ///
     /// Stops the spinner that was created with the [`Spinner::new`] function.
