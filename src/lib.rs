@@ -189,7 +189,25 @@ impl Spinner {
     /// ```
     pub fn stop_with_message(&mut self, msg: String) {
         self.stop();
-        print!("\r{}", msg);
+        println!("\x1b[2K\r{}", msg);
+    }
+
+    /// Stops the spinner with a provided symbol and message
+    ///
+    /// # Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```
+    /// use spinners::{Spinner, Spinners};
+    ///
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    ///
+    /// sp.stop_and_persist("✔", "Finished loading things into memory!".into());
+    /// ```
+    pub fn stop_and_persist(&mut self, symbol: &str, msg: String) {
+        self.stop();
+        println!("\x1b[2K\r{} {}", symbol, msg);
     }
 
     fn stop_inner(&mut self, stop_time: Instant, stop_symbol: Option<String>) {
