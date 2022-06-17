@@ -214,87 +214,22 @@ impl Spinner {
         println!("\x1b[2K\r{} {}", symbol, msg);
     }
 
-    /// Stops the spinner with a success symbol and a provided message
-    ///
-    /// # Examples
-    ///
-    /// Basic Usage:
-    ///
-    /// ```
-    /// use spinners::{Spinner, Spinners};
-    ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
-    ///
-    /// sp.succeed("Finished loading things into memory!".into());
-    /// ```
     pub fn succeed(&mut self, msg: String) {
         self.stop_and_persist(&format!("{}", SUCCESS_SYMBOL).to_string(), msg)
     }
 
-    /// Stops the spinner with an error symbol and a provided message
-    ///
-    /// # Examples
-    ///
-    /// Basic Usage:
-    ///
-    /// ```
-    /// use spinners::{Spinner, Spinners};
-    ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
-    ///
-    /// sp.fail("Failed to load things into memory!".into());
-    /// ```
     pub fn fail(&mut self, msg: String) {
         self.stop_and_persist(&format!("{}", ERROR_SYMBOL).to_string(), msg)
     }
 
-    /// Stops the spinner with a warning symbol and a provided message
-    ///
-    /// # Examples
-    ///
-    /// Basic Usage:
-    ///
-    /// ```
-    /// use spinners::{Spinner, Spinners};
-    ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
-    ///
-    /// sp.warn("Loaded some things to the memory".into());
-    /// ```
     pub fn warn(&mut self, msg: String) {
         self.stop_and_persist(&format!("{}", WARNING_SYMBOL).to_string(), msg)
     }
 
-    /// Stops the spinner with an info symbol and a provided message
-    ///
-    /// # Examples
-    ///
-    /// Basic Usage:
-    ///
-    /// ```
-    /// use spinners::{Spinner, Spinners};
-    ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
-    ///
-    /// sp.info("Finished loading things into memory! Now please run the main code.".into());
-    /// ```
     pub fn info(&mut self, msg: String) {
         self.stop_and_persist(&format!("{}", INFO_SYMBOL).to_string(), msg)
     }
 
-    /// Stops the spinner with an unknown symbol and a provided message
-    ///
-    /// # Examples
-    ///
-    /// Basic Usage:
-    ///
-    /// ```
-    /// use spinners::{Spinner, Spinners};
-    ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
-    ///
-    /// sp.unknown("Unknown error occured".into());
-    /// ```
     pub fn unknown(&mut self, msg: String) {
         self.stop_and_persist(&format!("{}", UNKNOWN_SYMBOL).to_string(), msg)
     }
