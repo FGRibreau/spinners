@@ -17,4 +17,3 @@ include = ["src/**/*", "README.md"]
 lazy_static = { version = "1.4.0" }
 maplit = { version = "1.0.2" }
 strum = { version = "0.24.0", features = ["derive"] }
-terminal-log-symbols = "0.1.6"

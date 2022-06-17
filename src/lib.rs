@@ -10,10 +10,6 @@ use std::{
 pub use crate::utils::spinner_names::SpinnerNames as Spinners;
 use crate::utils::spinners_data::SPINNERS as SpinnersMap;
 
-use terminal_log_symbols::colored::{
-    ERROR_SYMBOL, INFO_SYMBOL, SUCCESS_SYMBOL, UNKNOWN_SYMBOL, WARNING_SYMBOL,
-};
-
 mod utils;
 
 pub struct Spinner {
@@ -212,26 +208,6 @@ impl Spinner {
     pub fn stop_and_persist(&mut self, symbol: &str, msg: String) {
         self.stop();
         println!("\x1b[2K\r{} {}", symbol, msg);
-    }
-
-    pub fn succeed(&mut self, msg: String) {
-        self.stop_and_persist(&format!("{}", SUCCESS_SYMBOL).to_string(), msg)
-    }
-
-    pub fn fail(&mut self, msg: String) {
-        self.stop_and_persist(&format!("{}", ERROR_SYMBOL).to_string(), msg)
-    }
-
-    pub fn warn(&mut self, msg: String) {
-        self.stop_and_persist(&format!("{}", WARNING_SYMBOL).to_string(), msg)
-    }
-
-    pub fn info(&mut self, msg: String) {
-        self.stop_and_persist(&format!("{}", INFO_SYMBOL).to_string(), msg)
-    }
-
-    pub fn unknown(&mut self, msg: String) {
-        self.stop_and_persist(&format!("{}", UNKNOWN_SYMBOL).to_string(), msg)
     }
 
     fn stop_inner(&mut self, stop_time: Instant, stop_symbol: Option<String>) {
