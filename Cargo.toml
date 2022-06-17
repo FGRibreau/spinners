@@ -1,6 +1,6 @@
 [package]
 name = "spinners"
-version = "4.0.0"
+version = "4.1.0"
 edition = "2021"
 authors = ["François-Guillaume RIBREAU <github@fgribreau.com>", "jewlexx"]
 homepage = "https://github.com/fgribreau/spinners"
