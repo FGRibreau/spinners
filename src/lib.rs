@@ -104,12 +104,14 @@ impl Spinner {
     ///
     /// Stops the spinner that was created with the [`Spinner::new`] function.
     ///
-    /// Optionally call [`stop_with_newline`] to print a newline after the spinner is stopped,
-    /// or the [`stop_with_message`] function to print a message after the spinner is stopped.
+    /// Optionally call the [`stop_with_message`] function to print a message after the spinner is stopped.
+    /// You can also call the [`stop_with_symbol`] function to print a symbol after the spinner is stopped.
+    /// If you want to change the symbol and message after the spinner is stopped, you can call the [`stop_and_persist`] function.
     ///
     /// [`Spinner::new`]: struct.Spinner.html#method.new
-    /// [`stop_with_newline`]: struct.Spinner.html#method.stop_with_newline
     /// [`stop_with_message`]: struct.Spinner.html#method.stop_with_message
+    /// [`stop_with_symbol`]: struct.Spinner.html#method.stop_with_symbol
+    /// [`stop_and_persist`]: struct.Spinner.html#method.stop_and_persist
     ///
     /// # Examples
     ///
@@ -156,24 +158,6 @@ impl Spinner {
         println!();
     }
 
-    /// Stops the spinner and prints a new line
-    ///
-    /// # Examples
-    ///
-    /// Basic Usage:
-    ///
-    /// ```
-    /// use spinners::{Spinner, Spinners};
-    ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
-    ///
-    /// sp.stop_with_newline();
-    /// ```
-    pub fn stop_with_newline(&mut self) {
-        self.stop();
-        println!();
-    }
-
     /// Stops the spinner and prints the provided message
     ///
     /// # Examples
@@ -189,7 +173,7 @@ impl Spinner {
     /// ```
     pub fn stop_with_message(&mut self, msg: String) {
         self.stop();
-        println!("\x1b[2K\r{}", msg);
+        println!("{}", msg);
     }
 
     /// Stops the spinner with a provided symbol and message
@@ -207,7 +191,7 @@ impl Spinner {
     /// ```
     pub fn stop_and_persist(&mut self, symbol: &str, msg: String) {
         self.stop();
-        println!("\x1b[2K\r{} {}", symbol, msg);
+        println!("{} {}", symbol, msg);
     }
 
     fn stop_inner(&mut self, stop_time: Instant, stop_symbol: Option<String>) {
