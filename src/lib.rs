@@ -199,6 +199,7 @@ impl Spinner {
             .send((stop_time, stop_symbol))
             .expect("Could not stop spinner thread.");
         self.join.take().unwrap().join().unwrap();
+        // One problem I found is that there is a newline after the spinner stops.
         println!("\x1b[2K\r");
     }
 }
