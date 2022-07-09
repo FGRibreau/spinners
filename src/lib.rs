@@ -215,5 +215,6 @@ impl Spinner {
             .send((stop_time, stop_symbol))
             .expect("Could not stop spinner thread.");
         self.join.take().unwrap().join().unwrap();
+        println!("\x1b[2K\r");
     }
 }
