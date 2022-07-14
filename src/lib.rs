@@ -12,16 +12,21 @@ use crate::utils::spinners_data::SPINNERS as SpinnersMap;
 
 mod utils;
 
-pub struct Spinner {
+struct SpinnerHandle {
     sender: Sender<(Instant, Option<String>)>,
-    join: Option<JoinHandle<()>>,
+    join: JoinHandle<()>,
+}
+
+pub struct Spinner {
+    handle: Option<SpinnerHandle>,
+    on_drop: Option<StopBehavior>,
 }
 
 impl Drop for Spinner {
     fn drop(&mut self) {
-        if self.join.is_some() {
-            self.sender.send((Instant::now(), None)).unwrap();
-            self.join.take().unwrap().join().unwrap();
+        if self.handle.is_some() {
+            let behavior = self.on_drop.take().unwrap();
+            self.stop_with(&behavior);
         }
     }
 }
@@ -95,8 +100,8 @@ impl Spinner {
         });
 
         Self {
-            sender,
-            join: Some(join),
+            handle: Some(SpinnerHandle { sender, join }),
+            on_drop: Some(StopBehavior::NewLine),
         }
     }
 
@@ -211,9 +216,88 @@ impl Spinner {
     }
 
     fn stop_inner(&mut self, stop_time: Instant, stop_symbol: Option<String>) {
-        self.sender
+        let hdl = self.handle.take().unwrap();
+
+        hdl.sender
             .send((stop_time, stop_symbol))
             .expect("Could not stop spinner thread.");
-        self.join.take().unwrap().join().unwrap();
+
+        hdl.join.join().unwrap();
     }
+
+    /// Builder method  to convert a Spinner to a one with a new [StopBehavior].
+    ///
+    /// If the spinner is dropped without any prior call to one of its `Spinner::stop*`
+    /// methods, then the [StopBehavior] from the `behavior` parameter is triggered.
+    ///
+    /// Example:
+    /// ```
+    /// use spinners::{Spinner, Spinners, StopBehavior};
+    ///
+    /// # fn foo() -> Result<(), String> {
+    /// fn frobnicate(should_work: bool) -> Result<(), String> {
+    ///     if should_work {
+    ///         Ok(())
+    ///     } else {
+    ///         Err("Error!".to_string())
+    ///     }
+    /// }
+    ///
+    /// // Successful variant shows the message from [Spinner::stop_with]
+    /// // and not the one from [Spinner::on_drop]
+    /// {
+    ///     let mut sp = Spinner::new(Spinners::Dots, "Frobincating...".into())
+    ///         .on_drop(StopBehavior::SymbolAndMessage(
+    ///             "✗",
+    ///             "Ouch, something went wrong with the Frobnicator!?".into()));
+    ///     frobnicate(true)?;
+    ///     sp.stop_with(&StopBehavior::SymbolAndMessage(
+    ///         "✔", "Frobnication successful!".into()));
+    /// }
+    ///
+    /// // Failure variant in which the Spinner is dropped before having been explicitly
+    /// // stopped, the behavior passed into [Spinner::on_drop] is used.
+    /// {
+    ///     let mut sp = Spinner::new(Spinners::Dots, "Frobincating...".into())
+    ///         .on_drop(StopBehavior::SymbolAndMessage(
+    ///             "✗",
+    ///             "Ouch, something went wrong with the Frobnicator!?".into()));
+    ///     frobnicate(false)?;
+    ///     sp.stop_with(&StopBehavior::SymbolAndMessage(
+    ///         "✔", "Frobnication successful!".into()));
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn on_drop(mut self, behavior: StopBehavior) -> Self {
+        let hdl = self.handle.take().unwrap();
+        Self {
+            handle: Some(SpinnerHandle {
+                sender: hdl.sender,
+                join: hdl.join,
+            }),
+            on_drop: Some(behavior),
+        }
+    }
+
+    /// Stops the spinner with a given `StopBehavior`
+    ///
+    /// Each StopBehavior matches one of the other `Spinner::stop*` methods.
+    pub fn stop_with(&mut self, stop_behavior: &StopBehavior) {
+        match stop_behavior {
+            StopBehavior::NewLine => self.stop_with_newline(),
+            StopBehavior::Message(msg) => self.stop_with_message(msg.to_owned()),
+            StopBehavior::Symbol(symbol) => self.stop_with_symbol(symbol),
+            StopBehavior::SymbolAndMessage(symbol, msg) => {
+                self.stop_and_persist(symbol, msg.to_owned())
+            }
+        }
+    }
+}
+
+pub enum StopBehavior {
+    NewLine,
+    Message(String),
+    Symbol(&'static str),
+    SymbolAndMessage(&'static str, String),
 }
