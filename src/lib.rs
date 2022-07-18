@@ -119,7 +119,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
     ///
     /// sp.stop();
     /// ```
@@ -138,7 +138,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
     ///
     /// sp.stop_with_symbol("🗸");
     /// ```
@@ -148,7 +148,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
     ///
     /// sp.stop_with_symbol("\x1b[32m🗸\x1b[0m");
     /// ```
@@ -166,7 +166,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
     ///
     /// sp.stop_with_newline();
     /// ```
@@ -184,7 +184,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
     ///
     /// sp.stop_with_message("Finished loading things into memory!".into());
     /// ```
@@ -202,7 +202,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
     ///
     /// sp.stop_and_persist("✔", "Finished loading things into memory!".into());
     /// ```

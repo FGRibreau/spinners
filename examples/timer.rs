@@ -1,4 +1,4 @@
-use spinners::{Spinner, Spinners, Color};
+use spinners::{Spinner, Spinners};
 use std::{env, str::FromStr, thread::sleep, time::Duration};
 
 fn main() {
