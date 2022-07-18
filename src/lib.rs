@@ -9,7 +9,8 @@ use std::{
 
 pub use crate::utils::spinner_names::SpinnerNames as Spinners;
 use crate::utils::spinners_data::SPINNERS as SpinnersMap;
-
+pub use crate::utils::color::Color;
+use crate::utils::color::colorize;
 mod utils;
 
 pub struct Spinner {
@@ -34,9 +35,9 @@ impl Spinner {
     /// Basic Usage:
     ///
     /// ```
-    /// use spinners::{Spinner, Spinners};
+    /// use spinners::{Spinner, Spinners, Color};
     ///
-    /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
+    /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), Some(Color::Blue));
     /// ```
     ///
     /// No Message:
@@ -44,18 +45,18 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let sp = Spinner::new(Spinners::Dots, String::new());
+    /// let sp = Spinner::new(Spinners::Dots, String::new(), None);
     /// ```
-    pub fn new(spinner: Spinners, message: String) -> Self {
-        Self::new_inner(spinner, message, None)
+    pub fn new(spinner: Spinners, message: String, color: Option<Color>) -> Self {
+        Self::new_inner(spinner, message, color, None)
     }
 
     /// Create a new spinner that logs the time since it was created
-    pub fn with_timer(spinner: Spinners, message: String) -> Self {
-        Self::new_inner(spinner, message, Some(Instant::now()))
+    pub fn with_timer(spinner: Spinners, message: String, color: Option<Color>) -> Self {
+        Self::new_inner(spinner, message, color, Some(Instant::now()))
     }
 
-    fn new_inner(spinner: Spinners, message: String, start_time: Option<Instant>) -> Self {
+    fn new_inner(spinner: Spinners, message: String, color: Option<Color>, start_time: Option<Instant>) -> Self {
         let spinner_name = spinner.to_string();
         let spinner_data = SpinnersMap
             .get(&spinner_name)
@@ -75,12 +76,12 @@ impl Spinner {
                 let frame = stop_symbol.unwrap_or_else(|| frame.to_string());
                 match start_time {
                     None => {
-                        print!("\r{} {}", frame, message);
+                        print!("\r{} {}", colorize(frame, color), message);
                     }
                     Some(start_time) => {
                         let now = stop_time.unwrap_or_else(Instant::now);
                         let duration = now.duration_since(start_time).as_secs_f64();
-                        print!("\r{}{:>10.3} s\t{}", frame, duration, message);
+                        print!("\r{}{:>10.3} s\t{}", colorize(frame, color), duration, message);
                     }
                 }
 
