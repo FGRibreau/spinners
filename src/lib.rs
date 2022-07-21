@@ -75,12 +75,12 @@ impl Spinner {
                 let frame = stop_symbol.unwrap_or_else(|| frame.to_string());
                 match start_time {
                     None => {
-                        print!("\r{} {}", frame, message);
+                        eprint!("\r{} {}", frame, message);
                     }
                     Some(start_time) => {
                         let now = stop_time.unwrap_or_else(Instant::now);
                         let duration = now.duration_since(start_time).as_secs_f64();
-                        print!("\r{}{:>10.3} s\t{}", frame, duration, message);
+                        eprint!("\r{}{:>10.3} s\t{}", frame, duration, message);
                     }
                 }
 
@@ -153,7 +153,7 @@ impl Spinner {
     /// ```
     pub fn stop_with_symbol(&mut self, symbol: &str) {
         self.stop_inner(Instant::now(), Some(symbol.to_owned()));
-        println!();
+        eprintln!();
     }
 
     /// Stops the spinner and prints a new line
@@ -171,7 +171,7 @@ impl Spinner {
     /// ```
     pub fn stop_with_newline(&mut self) {
         self.stop();
-        println!();
+        eprintln!();
     }
 
     /// Stops the spinner and prints the provided message
@@ -189,7 +189,7 @@ impl Spinner {
     /// ```
     pub fn stop_with_message(&mut self, msg: String) {
         self.stop();
-        println!("\x1b[2K\r{}", msg);
+        eprintln!("\x1b[2K\r{}", msg);
     }
 
     /// Stops the spinner with a provided symbol and message
@@ -207,7 +207,7 @@ impl Spinner {
     /// ```
     pub fn stop_and_persist(&mut self, symbol: &str, msg: String) {
         self.stop();
-        println!("\x1b[2K\r{} {}", symbol, msg);
+        eprintln!("\x1b[2K\r{} {}", symbol, msg);
     }
 
     fn stop_inner(&mut self, stop_time: Instant, stop_symbol: Option<String>) {
