@@ -8,6 +8,8 @@ pub enum Color {
     Yellow,
     Cyan,
     White,
+    Magenta,
+    Black,
 }
 
 pub fn colorize(input: String, color: Option<Color>) -> Paint<String> {
@@ -18,6 +20,8 @@ pub fn colorize(input: String, color: Option<Color>) -> Paint<String> {
         Some(Color::Yellow) => Paint::yellow(input),
         Some(Color::Cyan) => Paint::cyan(input),
         Some(Color::White) => Paint::new(input),
+        Some(Color::Magenta) => Paint::magenta(input),
+        Some(Color::Black) => Paint::black(input),
         None => Paint::new(input),
     }
 }

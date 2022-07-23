@@ -8,7 +8,7 @@ fn main() {
     let mut sp = Spinner::new(
         Spinners::from_str(&spinner_name).unwrap(),
         "Waiting for 3 seconds".into(),
-        Some(Color::Green),
+        Color::Green,
     );
     sleep(Duration::from_secs(3));
     sp.stop_with_message("Finishing waiting for 3 seconds\n".into());

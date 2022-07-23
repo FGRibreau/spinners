@@ -47,16 +47,19 @@ impl Spinner {
     ///
     /// let sp = Spinner::new(Spinners::Dots, String::new(), None);
     /// ```
-    pub fn new(spinner: Spinners, message: String, color: Option<Color>) -> Self {
+    pub fn new<T>(spinner: Spinners, message: String, color: T) -> Self 
+    where T: Into<Option<Color>> + std::marker::Send + 'static + std::marker::Copy {
         Self::new_inner(spinner, message, color, None)
     }
 
     /// Create a new spinner that logs the time since it was created
-    pub fn with_timer(spinner: Spinners, message: String, color: Option<Color>) -> Self {
+    pub fn with_timer<T>(spinner: Spinners, message: String, color: T) -> Self 
+    where T: Into<Option<Color>> + std::marker::Send + 'static + std::marker::Copy {
         Self::new_inner(spinner, message, color, Some(Instant::now()))
     }
 
-    fn new_inner(spinner: Spinners, message: String, color: Option<Color>, start_time: Option<Instant>) -> Self {
+    fn new_inner<T>(spinner: Spinners, message: String, color: T, start_time: Option<Instant>) -> Self 
+    where T: Into<Option<Color>> + std::marker::Send + 'static + std::marker::Copy {
         let spinner_name = spinner.to_string();
         let spinner_data = SpinnersMap
             .get(&spinner_name)
@@ -76,12 +79,12 @@ impl Spinner {
                 let frame = stop_symbol.unwrap_or_else(|| frame.to_string());
                 match start_time {
                     None => {
-                        print!("\r{} {}", colorize(frame, color), message);
+                        print!("\r{} {}", colorize(frame, color.into()), message);
                     }
                     Some(start_time) => {
                         let now = stop_time.unwrap_or_else(Instant::now);
                         let duration = now.duration_since(start_time).as_secs_f64();
-                        print!("\r{}{:>10.3} s\t{}", colorize(frame, color), duration, message);
+                        print!("\r{}{:>10.3} s\t{}", colorize(frame, color.into()), duration, message);
                     }
                 }
 

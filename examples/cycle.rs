@@ -1,11 +1,11 @@
-use spinners::{Spinner, Spinners, Color};
+use spinners::{Spinner, Spinners};
 use std::{thread::sleep, time::Duration};
 use strum::IntoEnumIterator;
 
 fn main() {
     // loop through each spinner and display them for 2 seconds
     for spinner in Spinners::iter() {
-        let mut sp = Spinner::new(spinner.clone(), format!("{:?}", spinner), Some(Color::Blue));
+        let mut sp = Spinner::new(spinner.clone(), format!("{:?}", spinner), None);
         sleep(Duration::from_secs(2));
         sp.stop();
     }
