@@ -1,4 +1,4 @@
-use spinners::{Color, Spinner, Spinners};
+use spinners::{Spinner, Spinners};
 use std::{env, str::FromStr, thread::sleep, time::Duration};
 
 fn main() {
@@ -8,7 +8,6 @@ fn main() {
     let mut sp = Spinner::new(
         Spinners::from_str(&spinner_name).unwrap(),
         "Waiting for 3 seconds".into(),
-        Color::Green,
     );
     sleep(Duration::from_secs(3));
     sp.stop_with_message("Finishing waiting for 3 seconds\n".into());

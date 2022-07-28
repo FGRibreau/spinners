@@ -35,9 +35,9 @@ impl Spinner {
     /// Basic Usage:
     ///
     /// ```
-    /// use spinners::{Spinner, Spinners, Color};
+    /// use spinners::{Spinner, Spinners};
     ///
-    /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), Some(Color::Blue));
+    /// let sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     /// ```
     ///
     /// No Message:
@@ -45,9 +45,33 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let sp = Spinner::new(Spinners::Dots, String::new(), None);
+    /// let sp = Spinner::new(Spinners::Dots, String::new());
     /// ```
-    pub fn new<T>(spinner: Spinners, message: String, color: T) -> Self 
+    #[must_use] 
+    pub fn new(spinner: Spinners, message: String) -> Self  {
+        Self::new_inner(spinner, message, None, None)
+    }
+
+     /// Create a new colored spinner along with a message
+    ///
+    /// # Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```
+    /// use spinners::{Spinner, Spinners, Color};
+    ///
+    /// let sp = Spinner::new_with_color(Spinners::Dots, "Loading things into memory...".into(), Color::Blue);
+    /// ```
+    ///
+    /// No Message:
+    ///
+    /// ```
+    /// use spinners::{Spinner, Spinners};
+    ///
+    /// let sp = Spinner::new_with_color(Spinners::Dots, String::new(), None);
+    /// ```
+    pub fn new_with_color<T>(spinner: Spinners, message: String, color: T) -> Self 
     where T: Into<Option<Color>> + std::marker::Send + 'static + std::marker::Copy {
         Self::new_inner(spinner, message, color, None)
     }
@@ -69,14 +93,14 @@ impl Spinner {
 
         let join = thread::spawn(move || 'outer: loop {
             let mut stdout = stdout();
-            for frame in spinner_data.frames.iter() {
+            for frame in &spinner_data.frames {
                 let (do_stop, stop_time, stop_symbol) = match recv.try_recv() {
                     Ok((stop_time, stop_symbol)) => (true, Some(stop_time), stop_symbol),
                     Err(TryRecvError::Disconnected) => (true, None, None),
                     Err(TryRecvError::Empty) => (false, None, None),
                 };
 
-                let frame = stop_symbol.unwrap_or_else(|| frame.to_string());
+                let frame = stop_symbol.unwrap_or_else(|| (*frame).to_string());
                 match start_time {
                     None => {
                         print!("\r{} {}", colorize(frame, color.into()), message);
@@ -94,7 +118,7 @@ impl Spinner {
                     break 'outer;
                 }
 
-                thread::sleep(Duration::from_millis(spinner_data.interval as u64));
+                thread::sleep(Duration::from_millis(u64::from(spinner_data.interval)));
             }
         });
 
@@ -122,7 +146,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     ///
     /// sp.stop();
     /// ```
@@ -141,7 +165,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     ///
     /// sp.stop_with_symbol("🗸");
     /// ```
@@ -151,7 +175,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     ///
     /// sp.stop_with_symbol("\x1b[32m🗸\x1b[0m");
     /// ```
@@ -169,7 +193,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     ///
     /// sp.stop_with_newline();
     /// ```
@@ -187,7 +211,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     ///
     /// sp.stop_with_message("Finished loading things into memory!".into());
     /// ```
@@ -205,7 +229,7 @@ impl Spinner {
     /// ```
     /// use spinners::{Spinner, Spinners};
     ///
-    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into(), None);
+    /// let mut sp = Spinner::new(Spinners::Dots, "Loading things into memory...".into());
     ///
     /// sp.stop_and_persist("✔", "Finished loading things into memory!".into());
     /// ```
