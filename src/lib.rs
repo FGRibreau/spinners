@@ -1,7 +1,6 @@
 use std::thread::JoinHandle;
 use std::time::Instant;
 use std::{
-    io::{stdout, Write},
     sync::mpsc::{channel, Sender, TryRecvError},
     thread,
     time::Duration,
@@ -16,6 +15,7 @@ mod utils;
 pub struct Spinner {
     sender: Sender<(Instant, Option<String>)>,
     join: Option<JoinHandle<()>>,
+    stream: Stream
 }
 
 impl Drop for Spinner {
@@ -89,6 +89,8 @@ impl Spinner {
             .get(&spinner_name)
             .unwrap_or_else(|| panic!("No Spinner found with the given name: {}", spinner_name));
 
+        let stream = if let Some(stream) = stream { stream } else { Stream::default() };
+
         let (sender, recv) = channel::<(Instant, Option<String>)>();
 
         let join = thread::spawn(move || 'outer: loop {
@@ -112,7 +114,7 @@ impl Spinner {
                     }
                 }
 
-                stdout.flush().unwrap();
+                stream.write(&frame, &message, start_time, stop_time).expect("IO Error");
 
                 if do_stop {
                     break 'outer;
@@ -125,6 +127,7 @@ impl Spinner {
         Self {
             sender,
             join: Some(join),
+            stream
         }
     }
 
@@ -181,7 +184,7 @@ impl Spinner {
     /// ```
     pub fn stop_with_symbol(&mut self, symbol: &str) {
         self.stop_inner(Instant::now(), Some(symbol.to_owned()));
-        println!();
+        self.stream.stop(None, Some(symbol)).expect("IO error");
     }
 
     /// Stops the spinner and prints a new line
@@ -199,7 +202,7 @@ impl Spinner {
     /// ```
     pub fn stop_with_newline(&mut self) {
         self.stop();
-        println!();
+        self.stream.stop(None, None).expect("IO error");
     }
 
     /// Stops the spinner and prints the provided message
@@ -217,7 +220,7 @@ impl Spinner {
     /// ```
     pub fn stop_with_message(&mut self, msg: String) {
         self.stop();
-        println!("\x1b[2K\r{}", msg);
+        self.stream.stop(Some(&msg), None).expect("IO Error");
     }
 
     /// Stops the spinner with a provided symbol and message
@@ -235,7 +238,7 @@ impl Spinner {
     /// ```
     pub fn stop_and_persist(&mut self, symbol: &str, msg: String) {
         self.stop();
-        println!("\x1b[2K\r{} {}", symbol, msg);
+        self.stream.stop(Some(&msg), Some(symbol)).expect("IO Error");
     }
 
     fn stop_inner(&mut self, stop_time: Instant, stop_symbol: Option<String>) {
