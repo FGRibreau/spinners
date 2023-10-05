@@ -10,6 +10,9 @@
 > - [Keycloak Identity and Access Management (IAM) as a Service](https://www.cloud-iam.com/)
 > - [Automate your RoamResearch second brain](https://www.roam-bot.com)
 
+
+![200083093-cf48fcab-d95c-4a59-ac66-6e167dd33e7e](https://github.com/FGRibreau/spinners/assets/138050/a3e4d4f9-44c4-4b54-82a7-e608ab1da742)
+
 ## Install
 
 See [Cargo page](https://crates.io/crates/spinners)
