@@ -10,5 +10,5 @@ fn main() {
         "Waiting for 3 seconds".into(),
     );
     sleep(Duration::from_secs(3));
-    sp.stop_and_persist("✔", "That worked!".to_string())
+    sp.stop_and_persist("✔", "That worked!".to_string());
 }

@@ -26,7 +26,7 @@ use std::thread::sleep;
 use std::time::Duration;
 
 fn main() {
-    let mut sp = Spinner::new(Spinners::Dots9, "Waiting for 3 seconds".into());
+    let mut sp = Spinner::new(Spinners::Dots9, "Waiting for 3 seconds".into(), None);
     sleep(Duration::from_secs(3));
     sp.stop();
 }

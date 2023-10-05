@@ -8,8 +8,8 @@ use std::{
 
 pub use crate::utils::spinner_names::SpinnerNames as Spinners;
 use crate::utils::spinners_data::SPINNERS as SpinnersMap;
-pub use crate::utils::stream::Stream;
-
+pub use crate::utils::color::Color;
+use crate::utils::color::colorize;
 mod utils;
 
 pub struct Spinner {
@@ -47,47 +47,43 @@ impl Spinner {
     ///
     /// let sp = Spinner::new(Spinners::Dots, String::new());
     /// ```
-    pub fn new(spinner: Spinners, message: String) -> Self {
+    #[must_use] 
+    pub fn new(spinner: Spinners, message: String) -> Self  {
         Self::new_inner(spinner, message, None, None)
     }
 
+     /// Create a new colored spinner along with a message
+    ///
+    /// # Examples
+    ///
+    /// Basic Usage:
+    ///
+    /// ```
+    /// use spinners::{Spinner, Spinners, Color};
+    ///
+    /// let sp = Spinner::new_with_color(Spinners::Dots, "Loading things into memory...".into(), Color::Blue);
+    /// ```
+    ///
+    /// No Message:
+    ///
+    /// ```
+    /// use spinners::{Spinner, Spinners};
+    ///
+    /// let sp = Spinner::new_with_color(Spinners::Dots, String::new(), None);
+    /// ```
+    pub fn new_with_color<T>(spinner: Spinners, message: String, color: T) -> Self 
+    where T: Into<Option<Color>> + std::marker::Send + 'static + std::marker::Copy {
+        Self::new_inner(spinner, message, color, None)
+    }
+
     /// Create a new spinner that logs the time since it was created
-    pub fn with_timer(spinner: Spinners, message: String) -> Self {
-        Self::new_inner(spinner, message, Some(Instant::now()), None)
+    pub fn with_timer<T>(spinner: Spinners, message: String, color: T) -> Self 
+    where T: Into<Option<Color>> + std::marker::Send + 'static + std::marker::Copy {
+        Self::new_inner(spinner, message, color, Some(Instant::now()))
     }
 
-    /// Creates a new spinner along with a message with a specified output stream
-    ///
-    /// # Examples
-    ///
-    /// Basic Usage:
-    ///
-    /// ```
-    /// use spinners::{Spinner, Spinners, Stream};
-    /// 
-    /// let sp = Spinner::with_stream(Spinners::Dots, String::new(), Stream::Stderr);
-    /// ```
-    pub fn with_stream(spinner: Spinners, message: String, stream: Stream) -> Self {
-        Self::new_inner(spinner, message, None, Some(stream))
-    }
-
-    /// Creates a new spinner that logs the time since it was created with a specified output stream
-    ///
-    /// # Examples
-    ///
-    /// Basic Usage:
-    ///
-    /// ```
-    /// use spinners::{Spinner, Spinners, Stream};
-    /// 
-    /// let sp = Spinner::with_timer_and_stream(Spinners::Dots, String::new(), Stream::Stderr);
-    /// ```
-    pub fn with_timer_and_stream(spinner: Spinners, message: String, stream: Stream) -> Self {
-        Self::new_inner(spinner, message, Some(Instant::now()), Some(stream))
-    }
-
-    fn new_inner(spinner: Spinners, message: String, start_time: Option<Instant>, stream: Option<Stream>) -> Self 
-    {
+    fn new_inner<T>(spinner: Spinners, message: String, color: T, start_time: Option<Instant>) -> Self 
+    where T: Into<Option<Color>> + std::marker::Send + 'static + std::marker::Copy {
         let spinner_name = spinner.to_string();
         let spinner_data = SpinnersMap
             .get(&spinner_name)
@@ -98,15 +94,25 @@ impl Spinner {
         let (sender, recv) = channel::<(Instant, Option<String>)>();
 
         let join = thread::spawn(move || 'outer: loop {
-
-            for frame in spinner_data.frames.iter() {
+            let mut stdout = stdout();
+            for frame in &spinner_data.frames {
                 let (do_stop, stop_time, stop_symbol) = match recv.try_recv() {
                     Ok((stop_time, stop_symbol)) => (true, Some(stop_time), stop_symbol),
                     Err(TryRecvError::Disconnected) => (true, None, None),
                     Err(TryRecvError::Empty) => (false, None, None),
                 };
 
-                let frame = stop_symbol.unwrap_or_else(|| frame.to_string());
+                let frame = stop_symbol.unwrap_or_else(|| (*frame).to_string());
+                match start_time {
+                    None => {
+                        print!("\r{} {}", colorize(frame, color.into()), message);
+                    }
+                    Some(start_time) => {
+                        let now = stop_time.unwrap_or_else(Instant::now);
+                        let duration = now.duration_since(start_time).as_secs_f64();
+                        print!("\r{}{:>10.3} s\t{}", colorize(frame, color.into()), duration, message);
+                    }
+                }
 
                 stream.write(&frame, &message, start_time, stop_time).expect("IO Error");
 
@@ -114,7 +120,7 @@ impl Spinner {
                     break 'outer;
                 }
 
-                thread::sleep(Duration::from_millis(spinner_data.interval as u64));
+                thread::sleep(Duration::from_millis(u64::from(spinner_data.interval)));
             }
         });
 

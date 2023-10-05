@@ -1,6 +1,6 @@
 use strum::{Display, EnumIter, EnumString};
 
-#[derive(Debug, Clone, EnumIter, Display, EnumString)]
+#[derive(Debug, Copy, Clone, EnumIter, Display, EnumString)]
 pub enum SpinnerNames {
     Dots,
     Dots2,
