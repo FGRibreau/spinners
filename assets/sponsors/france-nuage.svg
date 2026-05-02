@@ -1,0 +1,15 @@
+<svg viewBox="-5 -6 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fn-grad-red" x1="34.84" y1="17.8" x2="46.02" y2="41.46" gradientUnits="userSpaceOnUse">
+      <stop offset="0.45" stop-color="#FF3A51"/>
+      <stop offset="1" stop-color="#C81328"/>
+    </linearGradient>
+    <linearGradient id="fn-grad-blue" x1="9.33" y1="38.03" x2="9.63" y2="40.65" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A4CE5"/>
+      <stop offset="1" stop-color="#0C36B7"/>
+    </linearGradient>
+  </defs>
+  <path d="M35.91 21.12c-1.28-.6-2.72-.94-4.23-.94-5.51 0-9.98 4.47-9.98 9.98 0 2.19.7 4.21 1.9 5.86h-7.76v4.34h29.52v-.02c.21.02.43.02.65.02 4.8 0 8.68-3.89 8.68-8.68 0-3.93-2.61-7.25-6.19-8.32-.59-3.17-3.38-5.57-6.72-5.57-2.49 0-4.67 1.33-5.87 3.32z" fill="url(#fn-grad-red)"/>
+  <path d="M29.12 40.32c7.15-.63 12.77-6.63 12.77-13.95 0-7.73-6.27-14-14-14-6.6 0-12.13 4.56-13.61 10.71h-2.45V40h17.29z" fill="#ffffff"/>
+  <path d="M16.71 40.37v-.01c5.67-.23 10.2-4.9 10.2-10.63 0-5.87-4.76-10.64-10.64-10.64-4.86 0-8.95 3.26-10.23 7.71-3.19.57-5.62 3.37-5.62 6.73 0 3.37 2.44 6.17 5.64 6.73v.1h10.65z" fill="url(#fn-grad-blue)"/>
+</svg>

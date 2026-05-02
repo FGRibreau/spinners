@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" role="img" aria-label="Qualneo">
+  <g transform="translate(8 8)">
+    <rect x="2" y="2" width="60" height="60" fill="none" stroke="#0B1120" stroke-width="3"/>
+    <rect x="19" y="19" width="26" height="26" fill="#0B1120"/>
+    <rect x="45" y="53" width="17" height="9" fill="#FF4500"/>
+  </g>
+  <text x="92" y="55" fill="#0B1120"
+        font-family="'Space Grotesk', 'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="44" font-weight="700"
+        letter-spacing="-1.6">Qualneo</text>
+</svg>

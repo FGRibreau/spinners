@@ -4,13 +4,65 @@
 
 <p align="center"><img src="https://media.giphy.com/media/3oxHQyZfOJjlL3bhRK/giphy.gif"></p>
 
-> ## ❤️ Shameless plug
-> - [Open-Source **Webhook** as a Service](https://www.hook0.com/)
-> - [**Charts, simple as a URL**. 1 url = 1 chart - Charts API](https://image-charts.com)
-> - [Keycloak Identity and Access Management (IAM) as a Service](https://www.cloud-iam.com/)
-> - [**Recapro.ai** - AI meeting recorder, offline-first, 100% private, no data sent to third parties](https://recapro.ai)
-> - [**Natalia** - AI-powered phone assistant, auto-answers, qualifies & routes calls 24/7](https://getnatalia.com)
-> - [**Bunker** - Sovereign cloud hosting, deploy on EU infrastructure, 60% cheaper than AWS](https://getbunker.net)
+## Sponsors
+
+<table>
+  <tr>
+    <td align="center" width="175">
+      <a href="https://france-nuage.fr/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=france-nuage&mtm_content=spinners">
+        <img src="assets/sponsors/france-nuage.svg" height="60" alt="France-Nuage"/><br/>
+        <b>France-Nuage</b>
+      </a><br/>
+      <sub>Sovereign French cloud for the CLIs you ship. Re-internalisable infra.</sub>
+    </td>
+    <td align="center" width="175">
+      <a href="https://www.hook0.com/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=hook0&mtm_content=spinners">
+        <img src="assets/sponsors/hook0.png" height="60" alt="Hook0"/><br/>
+        <b>Hook0</b>
+      </a><br/>
+      <sub>Add webhook delivery to your CLI's backend. Self-hosted, retries done.</sub>
+    </td>
+    <td align="center" width="175">
+      <a href="https://getnatalia.com/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=natalia&mtm_content=spinners">
+        <img src="assets/sponsors/natalia.svg" height="60" alt="Natalia"/><br/>
+        <b>Natalia</b>
+      </a><br/>
+      <sub>Spinning while users wait? Natalia answers their calls 24/7 meanwhile.</sub>
+    </td>
+    <td align="center" width="175">
+      <a href="https://netir.fr/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=netir&mtm_content=spinners">
+        <img src="assets/sponsors/netir.svg" height="60" alt="NetIR"/><br/>
+        <b>NetIR</b>
+      </a><br/>
+      <sub>Hire vetted French freelance CLI authors or join the marketplace.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="233">
+      <a href="https://nobullshitconseil.com/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=nbc&mtm_content=spinners">
+        <img src="assets/sponsors/nobullshitconseil.svg" height="60" alt="NoBullshitConseil"/><br/>
+        <b>NoBullshitConseil</b>
+      </a><br/>
+      <sub>Tech advisory without the bullshit. Straight talk for founders.</sub>
+    </td>
+    <td align="center" width="233">
+      <a href="https://qualneo.fr/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=qualneo&mtm_content=spinners">
+        <img src="assets/sponsors/qualneo.svg" height="60" alt="Qualneo"/><br/>
+        <b>Qualneo</b>
+      </a><br/>
+      <sub>Qualiopi LMS for French trainers — friendly nod from a CLI builder.</sub>
+    </td>
+    <td align="center" width="233">
+      <a href="https://recapro.ai/?mtm_source=github&mtm_medium=sponsor&mtm_campaign=recapro&mtm_content=spinners">
+        <img src="assets/sponsors/recapro.png" height="60" alt="Recapro"/><br/>
+        <b>Recapro</b>
+      </a><br/>
+      <sub>Sovereign AI for meeting notes. Less spinner, more shipped reports.</sub>
+    </td>
+  </tr>
+</table>
+
+> **Interested in sponsoring?** [Get in touch](mailto:rust@fgribreau.com)
 
 
 ![200083093-cf48fcab-d95c-4a59-ac66-6e167dd33e7e](https://github.com/FGRibreau/spinners/assets/138050/a3e4d4f9-44c4-4b54-82a7-e608ab1da742)
