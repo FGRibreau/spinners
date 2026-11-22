@@ -106,7 +106,7 @@ Enables native terminal progress bar support via the [ConEmu OSC 9;4](https://co
 
 ```toml
 [dependencies]
-spinners = { version = "4.1.0", features = ["osc-progress"] }
+spinners = { version = "4.2.0", features = ["osc-progress"] }
 ```
 
 The progress bar is emitted as an indeterminate/pulsing indicator while the spinner is active, and cleared when the spinner is stopped or dropped. Sequences are only emitted when the output stream is a terminal, so piped output is unaffected.
